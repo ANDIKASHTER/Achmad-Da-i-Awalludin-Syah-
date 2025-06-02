@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>tazkiyatun nafs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri&display=swap" rel="stylesheet" />
+    <style>
+        /* Root colors for green and cream palette */
+        :root {
+            --green-dark: #1b4d3e;
+            --green-medium: #2e7d32;
+            --green-light: #a3c293;
+            --cream: #f6f1e7;
+            --cream-light: #fffdf7;
+            --button-bg: #2e7d32;
+            --button-bg-hover: #1b4d3e;
+            --text-color: var(--green-dark);
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Cairo', sans-serif;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            box-sizing: border-box;
+
+            /* Background image with overlay */
+            background: 
+                linear-gradient(rgba(246, 241, 231, 0.85), rgba(246, 241, 231, 0.85)),
+                url('https://cdn1.katadata.co.id/media/images/temp/2023/03/31/Ilustrasi_Masjid_Quba-2023_03_31-11_10_44_1447f8bb41b6264a08da4c1a83792329.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 650px;
+            background: var(--cream);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(46, 125, 50, 0.2);
+            padding: 3rem 3rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Islamic pattern decorative circle shapes */
+        .container::before,
+        .container::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            background: var(--green-medium);
+        }
+
+        .container::before {
+            width: 200px;
+            height: 200px;
+            top: -80px;
+            left: -80px;
+        }
+
+        .container::after {
+            width: 120px;
+            height: 120px;
+            bottom: -60px;
+            right: -60px;
+        }
+
+        h1 {
+            font-family: 'Amiri', serif;
+            font-weight: 700;
+            font-size: 3.8rem;
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--green-dark);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--green-medium);
+            font-weight: 600;
+            margin-bottom: 2.2rem;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .author {
+            font-size: 1rem;
+            color: var(--green-dark);
+            font-weight: 400;
+            margin-bottom: 3rem;
+        }
+
+        .btn-mulai {
+            background-color: var(--button-bg);
+            color: var(--cream-light);
+            border: none;
+            padding: 1.15rem 3rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(46, 125, 50, 0.3);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            letter-spacing: 0.05em;
+            user-select: none;
+            text-decoration: none; /* Remove underline */
+        }
+
+        .btn-mulai:hover,
+        .btn-mulai:focus {
+            background-color: var(--button-bg-hover);
+            box-shadow: 0 12px 20px rgba(27, 77, 62, 0.6);
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" role="main">
+        <h1>tazkiyatun nafs</h1>
+        <p class="subtitle">Membersihkan Hati dari Akhlak Tercela,<br />Menumbuhkan Akhlak Terpuji</p>
+        <p class="author">oleh: Achmad Da'i Awalludin Syah (2310110115)</p>
+        <a href="mulai.html" class="btn-mulai" aria-label="Mulai">Mulai</a>
+    </div>
+</body>
+</html>

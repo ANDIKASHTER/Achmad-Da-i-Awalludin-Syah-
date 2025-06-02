@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Daftar Pembelajaran - tazkiyatun nafs</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri&display=swap" rel="stylesheet" />
+<style>
+    :root {
+        --green-dark: #1b4d3e;
+        --green-medium: #2e7d32;
+        --green-light: #a3c293;
+        --cream: #f6f1e7;
+        --cream-light: #fffdf7;
+        --button-bg: #2e7d32;
+        --button-bg-hover: #1b4d3e;
+        --text-color: var(--green-dark);
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Cairo', sans-serif;
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem;
+        box-sizing: border-box;
+        background: 
+            linear-gradient(rgba(246, 241, 231, 0.85), rgba(246, 241, 231, 0.85)),
+            url('https://cdn1.katadata.co.id/media/images/temp/2023/03/31/Ilustrasi_Masjid_Quba-2023_03_31-11_10_44_1447f8bb41b6264a08da4c1a83792329.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .container {
+        max-width: 700px;
+        background: var(--cream);
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(46, 125, 50, 0.2);
+        padding: 2rem 2.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Decorative circles for subtle pattern */
+    .container::before,
+    .container::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.1;
+        background: var(--green-medium);
+    }
+
+    .container::before {
+        width: 150px;
+        height: 150px;
+        top: -60px;
+        left: -60px;
+    }
+
+    .container::after {
+        width: 100px;
+        height: 100px;
+        bottom: -40px;
+        right: -40px;
+    }
+
+    h1 {
+        font-family: 'Amiri', serif;
+        font-weight: 700;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--green-dark);
+        text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .option-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .option-item {
+        background: var(--green-light);
+        border-radius: 10px;
+        margin-bottom: 1.2rem;
+        padding: 1.25rem 1.75rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--green-dark);
+        cursor: pointer;
+        box-shadow: 0 6px 12px rgba(46, 125, 50, 0.25);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        font-family: 'Cairo', sans-serif;
+        user-select: none;
+        text-align: left;
+    }
+
+    .option-item:hover,
+    .option-item:focus {
+        background: var(--green-medium);
+        color: var(--cream-light);
+        box-shadow: 0 10px 20px rgba(27, 77, 62, 0.6);
+        outline: none;
+    }
+
+    /* Link inside option-item styling */
+    .option-item a {
+        text-decoration: none !important; /* hilangkan garis bawah */
+        color: inherit !important; /* warna mengikuti warna parent */
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .option-item a:hover,
+    .option-item a:focus {
+        color: var(--cream-light) !important;
+    }
+</style>
+</head>
+<body>
+    <main class="container" role="main" aria-label="Daftar Pembelajaran">
+        <h1>Daftar Pembelajaran</h1>
+        <ul class="option-list" role="list">
+            <li class="option-item" tabindex="0"><a href="materi-terpuji.html">1. Materi Akhlak Terpuji</a></li>
+            <li class="option-item" tabindex="0"><a href="materi-tercela.html">2. Materi Akhlak Tercela</a></li>
+            <li class="option-item" tabindex="0"><a href="video.html">3. Vidio Inspiratif</a></li>
+            <li class="option-item" tabindex="0"><a href="evaluasi.html">4. Evaluasi</a></li>
+            <li class="option-item" tabindex="0"><a href="game.html">5. Game</a></li>
+        </ul>
+    </main>
+</body>
+</html>

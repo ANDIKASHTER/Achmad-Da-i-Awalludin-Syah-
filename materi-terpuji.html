@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Akhlak Terpuji - Pembelajaran</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: 'Nunito', sans-serif;
+        background: url('https://www.ahmadzain.com/img/masjid.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #f5f5f5;
+    }
+    /* Overlay for better text readability */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: -1;
+    }
+    h1 {
+        text-align: center;
+        margin: 30px 20px 10px 20px;
+        font-size: 2.8rem;
+        color: #ffd966;
+        text-shadow: 0 0 8px #c38f00;
+    }
+    /* Popup container and style */
+    .popup {
+        max-width: 800px;
+        background: #222a33cc; /* semi-transparent dark */
+        margin: 0 auto 40px auto;
+        padding: 25px 35px;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+        position: relative;
+    }
+    .popup h2 {
+        color: #ffd966;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-align: center;
+        text-shadow: 0 0 6px #d0a700;
+    }
+    .popup h3 {
+        color: #fff9c4;
+        margin-top: 22px;
+        margin-bottom: 7px;
+        font-weight: 700;
+        text-shadow: 0 0 5px #d2ad00;
+    }
+    .popup h4 {
+        margin-top: 18px;
+        color: #fff59d;
+        font-weight: 700;
+        text-shadow: 0 0 4px #b7a500;
+    }
+    .popup p, .popup ol {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 14px;
+        text-shadow: 0 0 3px rgba(0,0,0,0.8);
+    }
+    ol {
+        padding-left: 1.5em;
+    }
+    ol li {
+        margin-bottom: 0.7em;
+    }
+    /* Navigation Buttons */
+    .nav-buttons {
+        text-align: center;
+        margin-top: -20px;
+        margin-bottom: 30px;
+    }
+    button {
+        background: #ffd966;
+        border: none;
+        border-radius: 25px;
+        color: #333;
+        font-weight: 700;
+        padding: 12px 30px;
+        margin: 0 12px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 8px rgba(255, 217, 102, 0.6);
+        transition: all 0.3s ease;
+        user-select: none;
+    }
+    button:hover:not(:disabled) {
+        background: #e6c542;
+        box-shadow: 0 6px 12px rgba(230, 197, 66, 0.8);
+    }
+    button:disabled {
+        opacity: 0.4;
+        cursor: default;
+    }
+</style>
+</head>
+<body>
+
+<h1>Akhlak Terpuji</h1>
+
+<div class="popup" id="popupContent">
+    <!-- Content will be injected by JavaScript -->
+</div>
+
+<div class="nav-buttons">
+    <button id="prevBtn" onclick="prevPage()" disabled>Prev</button>
+    <button id="nextBtn" onclick="nextPage()">Next</button>
+</div>
+
+<script>
+    // Array of page contents as HTML strings
+    const pages = [
+        `<h2>1. IKHLAS dan TAWADHU</h2>
+        <h3>A. IKHLAS</h3>
+        <p>Pengertian (dari Kitab Ihya Ulumiddin, Imam Al-Ghazali): Ikhlas berasal dari kata khalasha yang berarti murni, bersih, atau tidak tercampur. Dalam istilah akhlak Islam, ikhlas berarti melakukan amal ibadah semata-mata untuk mencari ridha Allah SWT, tanpa ada niat lain seperti ingin dipuji, disanjung, atau mendapatkan keuntungan duniawi. Imam Al-Ghazali menyebutkan bahwa ikhlas adalah amalan hati yang paling berat karena manusia cenderung ingin dilihat dan diapresiasi oleh sesama. Ia berkata, "Ikhlas itu seperti menanam dalam pasir, menyirami dengan air dari langit, dan menjaganya dari hewan pemakan tumbuhan."</p>
+        <p>Seseorang yang ikhlas tidak peduli apakah orang lain mengetahui amal baiknya atau tidak, sebab baginya yang terpenting adalah bahwa Allah Maha Tahu. Ikhlas adalah fondasi dari semua amal, dan tanpanya, amal hanya menjadi bentuk lahiriah yang kosong dari nilai spiritual.</p>
+        <h4>Contoh Perilaku Ikhlas:</h4>
+        <ol>
+            <li>Menolong teman yang kesusahan tanpa berharap imbalan atau balasan.<br><small>Misalnya, membantu teman yang jatuh dari sepeda dan membawanya ke UKS tanpa berharap disebut pahlawan.</small></li>
+            <li>Menjaga kebiasaan ibadah sunnah meski tidak diketahui orang lain.<br><small>Seperti rutin sholat tahajud dan tidak menceritakannya kepada siapapun.</small></li>
+            <li>Mengajar adik atau teman yang kesulitan belajar karena Allah, bukan karena ingin dipuji pintar.</li>
+        </ol>
+        <hr style="border-color: #444;">
+        <h3>B. TAWADHU</h3>
+        <p>Pengertian (dari Kitab Bidayatul Hidayah oleh Imam Al-Ghazali dan Adabul Mufrad oleh Imam Bukhari): Tawadhu adalah sikap merendahkan diri tanpa merasa hina, serta menghindari sifat sombong dan tinggi hati. Dalam Adabul Mufrad, Rasulullah SAW bersabda:<br>
+        <em>"Barangsiapa merendahkan diri karena Allah, maka Allah akan mengangkat derajatnya." (Imam Bukhari, Adabul Mufrad, hadis no. 586)</em></p>
+        <p>Imam Al-Ghazali menjelaskan bahwa tawadhu bukan berarti tidak percaya diri, tetapi lebih kepada menyadari bahwa segala yang dimiliki (ilmu, harta, kedudukan) adalah titipan Allah. Orang tawadhu tidak merendahkan orang lain dan tidak menganggap dirinya paling benar. Rasulullah SAW adalah teladan dalam tawadhu. Meski beliau adalah Nabi, beliau makan dan duduk bersama orang miskin, menjahit bajunya sendiri, dan menyapu rumahnya.</p>
+        <h4>Contoh Perilaku Tawadhu:</h4>
+        <ol>
+            <li>Seorang siswa yang cerdas tetap rendah hati dan tidak mengejek teman yang nilainya lebih rendah.</li>
+            <li>Menyapa dan menghormati siapa pun, baik teman, guru, petugas kebersihan, maupun tukang parkir.</li>
+            <li>Menerima nasihat dari orang yang lebih muda atau yang dianggap biasa saja, tanpa merasa gengsi.</li>
+        </ol>`,
+
+        `<h2>2. JUJUR dan AMANAH</h2>
+        <h3>A. JUJUR</h3>
+        <p>Pengertian (dari Kitab Akhlaq lil Banin dan Hadis Shahih Muslim): Kejujuran (ash-shidq) adalah kesesuaian antara ucapan, niat, dan perbuatan. Sifat ini merupakan dasar dari semua akhlak yang baik. Dalam hadis Nabi SAW disebutkan:<br><em>"Sesungguhnya kejujuran membawa kepada kebaikan, dan kebaikan membawa ke surga." (HR. Muslim, no. 2607)</em></p>
+        <p>Syekh Umar Baraja dalam Akhlaq lil Banin menjelaskan bahwa kejujuran bukan hanya dalam ucapan, tetapi juga dalam niat dan tindakan. Jujur membuat seseorang dapat dipercaya, dan menjadi ciri utama orang beriman. Orang yang terbiasa jujur akan dicintai oleh Allah dan manusia.</p>
+        <h4>Contoh Perilaku Jujur:</h4>
+        <ol>
+            <li>Mengembalikan uang lebih yang tidak sengaja diberikan oleh penjual saat belanja.</li>
+            <li>Mengakui kesalahan saat berbuat salah, meskipun bisa saja menyalahkan orang lain.</li>
+            <li>Tidak mencontek saat ulangan, walaupun tidak diawasi oleh guru.</li>
+        </ol>
+        <hr style="border-color: #444;">
+        <h3>B. AMANAH</h3>
+        <p>Pengertian (dari Kitab Ihya Ulumiddin dan Akhlaq lil Banin): Amanah berarti dapat dipercaya dalam menjaga sesuatu yang dititipkan, baik berupa barang, rahasia, maupun tanggung jawab. Imam Al-Ghazali mengatakan bahwa orang yang amanah adalah orang yang sadar bahwa setiap titipan adalah ujian. Ia tidak akan mengkhianati kepercayaan meski tidak diawasi. Dalam Al-Qur’an, Allah berfirman:<br><em>"Sesungguhnya Allah menyuruh kamu menyampaikan amanat kepada yang berhak menerimanya." (QS. An-Nisa: 58)</em></p>
+        <p>Amanah juga merupakan sifat wajib para nabi. Tanpa amanah, seseorang tidak akan bisa dipercaya dalam urusan agama maupun dunia.</p>
+        <h4>Contoh Perilaku Amanah:</h4>
+        <ol>
+            <li>Menjaga rahasia teman yang sudah dipercayakan, tidak menyebarkannya ke orang lain.</li>
+            <li>Menjalankan tugas piket kelas sesuai giliran tanpa harus diingatkan.</li>
+            <li>Tidak membuka atau mengubah isi pesan di HP yang bukan miliknya.</li>
+        </ol>`,
+
+        `<h2>3. SABAR dan SYUKUR</h2>
+        <h3>A. SABAR</h3>
+        <p>Pengertian (dari Kitab Ihya Ulumiddin dan Bidayatul Hidayah): Sabar (ash-shabr) adalah kemampuan menahan diri dalam menghadapi ujian, menahan hawa nafsu, dan menjalankan perintah Allah dengan konsisten. Sabar dibagi menjadi tiga:</p>
+        <ol>
+            <li>Sabar dalam ketaatan kepada Allah.</li>
+            <li>Sabar dalam menjauhi maksiat.</li>
+            <li>Sabar menghadapi ujian hidup.</li>
+        </ol>
+        <p>Imam Al-Ghazali menegaskan bahwa sabar adalah pangkal kekuatan jiwa. Tanpa sabar, seseorang akan mudah marah, putus asa, atau melakukan pelanggaran. Sabar menjadikan seseorang kuat secara spiritual dan tidak mudah tergoda oleh dunia.</p>
+        <h4>Contoh Perilaku Sabar:</h4>
+        <ol>
+            <li>Tidak membalas hinaan teman, tapi tetap bersikap baik.</li>
+            <li>Menahan diri dari bermain game sebelum selesai belajar atau sholat.</li>
+            <li>Tetap sabar ketika tidak dibelikan barang keinginan, dan tidak marah kepada orang tua.</li>
+        </ol>
+        <hr style="border-color: #444;">
+        <h3>B. SYUKUR</h3>
+        <p>Pengertian (dari Al-Qur’an dan Akhlaq lil Banin): Syukur berarti mengakui nikmat Allah, baik melalui hati (rasa ridha), lisan (ucapan pujian), dan perbuatan (menggunakan nikmat untuk kebaikan). Dalam QS. Ibrahim: 7 Allah berfirman:<br><em>"Jika kalian bersyukur, niscaya Aku akan menambah (nikmat) kepadamu."</em></p>
+        <p>Syukur bukan hanya saat mendapat nikmat besar, tapi juga pada hal kecil seperti diberi waktu luang, sehat, dan makan sederhana. Syukur membuat seseorang tidak mudah iri, tidak sombong, dan selalu merasa cukup.</p>
+        <h4>Contoh Perilaku Syukur:</h4>
+        <ol>
+            <li>Mengucapkan “Alhamdulillah” setelah makan, meski makanannya sederhana.</li>
+            <li>Menggunakan waktu sehat untuk beribadah dan belajar dengan sungguh-sungguh.</li>
+            <li>Merawat barang-barang sekolah meskipun tidak baru, sebagai wujud syukur kepada orang tua.</li>
+        </ol>`,
+
+        `<h2>✅ PENUTUP</h2>
+        <p>Akhlak terpuji adalah fondasi utama bagi pembentukan karakter muslim sejati. Dengan menanamkan sikap ikhlas, tawadhu, jujur, amanah, sabar, dan syukur, seseorang akan menjadi pribadi yang kuat, disukai banyak orang, dan dicintai Allah SWT. Materi ini dapat dijadikan pedoman dalam kehidupan sehari-hari, di rumah, sekolah, dan masyarakat.</p>
+        <p style="text-align:center; font-size:1.2rem; font-weight:700; margin-top: 2rem; color:#ffd966; text-shadow: 0 0 6px #ddbb22;">
+          Terima kasih telah mempelajari materi Akhlak Terpuji!
+        </p>`
+    ];
+
+    let currentPage = 0;
+
+    const popup = document.getElementById('popupContent');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updatePage() {
+        popup.innerHTML = pages[currentPage];
+        prevBtn.disabled = currentPage === 0;
+        nextBtn.disabled = currentPage === pages.length - 1;
+        // Scroll popup to top when page changes
+        popup.scrollTop = 0;
+    }
+
+    function nextPage() {
+        if (currentPage < pages.length - 1) {
+            currentPage++;
+            updatePage();
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 0) {
+            currentPage--;
+            updatePage();
+        }
+    }
+
+    // Initialize first page
+    updatePage();
+</script>
+
+</body>
+</html>
+

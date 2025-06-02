@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Akhlak Tercela - Pembelajaran</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background: url('https://www.ahmadzain.com/img/masjid.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        /* Overlay for better text readability */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        h1 {
+            text-align: center;
+            margin: 30px 20px 10px 20px;
+            font-size: 2.8rem;
+            color: #ffd966;
+            text-shadow: 0 0 8px #c38f00;
+        }
+        /* Popup container and style */
+        .popup {
+            max-width: 800px;
+            background: #222a33cc; /* semi-transparent dark */
+            margin: 0 auto 40px auto;
+            padding: 25px 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+            position: relative;
+        }
+        .popup h2 {
+            color: #ffd966;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 0 0 6px #d0a700;
+        }
+        .popup h3 {
+            color: #fff9c4;
+            margin-top: 22px;
+            margin-bottom: 7px;
+            font-weight: 700;
+            text-shadow: 0 0 5px #d2ad00;
+        }
+        .popup h4 {
+            margin-top: 18px;
+            color: #fff59d;
+            font-weight: 700;
+            text-shadow: 0 0 4px #b7a500;
+        }
+        .popup p, .popup ol {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 14px;
+            text-shadow: 0 0 3px rgba(0,0,0,0.8);
+            color: white;
+        }
+        ol {
+            padding-left: 1.5em;
+        }
+        ol li {
+            margin-bottom: 0.7em;
+        }
+        /* Navigation Buttons */
+        .nav-buttons {
+            text-align: center;
+            margin-top: -20px;
+            margin-bottom: 30px;
+        }
+        button {
+            background: #ffd966;
+            border: none;
+            border-radius: 25px;
+            color: #333;
+            font-weight: 700;
+            padding: 12px 30px;
+            margin: 0 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(255, 217, 102, 0.6);
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        button:hover:not(:disabled) {
+            background: #e6c542;
+            box-shadow: 0 6px 12px rgba(230, 197, 66, 0.8);
+        }
+        button:disabled {
+            opacity: 0.4;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Akhlak Tercela</h1>
+
+<div class="popup" id="popupContent">
+    <!-- Content will be injected by JavaScript -->
+</div>
+
+<div class="nav-buttons">
+    <button id="prevBtn" onclick="prevPage()" disabled>Prev</button>
+    <button id="nextBtn" onclick="nextPage()">Next</button>
+</div>
+
+<script>
+    // Array of page contents as HTML strings
+    const pages = [
+        `<h2>1. SOMBONG dan UJUB</h2>
+        <h3>A. SOMBONG (Kibr)</h3>
+        <p>Pengertian (dari Kitab Ihya Ulumiddin oleh Imam Al-Ghazali): Sombong adalah sikap merasa diri lebih tinggi, lebih baik, dan lebih mulia dari orang lain tanpa alasan yang benar, serta memandang rendah orang lain. Dalam bahasa Arab disebut kibr, yang merupakan salah satu sifat tercela yang sangat dibenci Allah SWT. Rasulullah SAW bersabda:<br>
+        <em>"Tidak akan masuk surga orang yang di dalam hatinya ada seberat biji sawi dari kesombongan." (HR. Muslim)</em></p>
+        <p>Imam Al-Ghazali menjelaskan bahwa sombong adalah akar segala dosa besar karena menimbulkan rasa angkuh, enggan menerima kebenaran, dan merendahkan orang lain. Sombong sering membuat seseorang menolak nasehat dan merasa paling benar.</p>
+        <h4>Contoh Perilaku Sombong:</h4>
+        <ol>
+            <li>Menolak mengakui kesalahan meski sudah jelas salah.</li>
+            <li>Mengolok-olok atau meremehkan teman yang berpenampilan sederhana.</li>
+            <li>Menunjukkan kekayaan dengan pamer barang mahal untuk membuat iri orang lain.</li>
+        </ol>
+        <hr style="border-color: #444;">
+        <h3>B. UJUB (Riya dan Bangga Diri Berlebihan)</h3>
+        <p>Pengertian: Ujub adalah merasa bangga atau kagum berlebihan terhadap diri sendiri karena kelebihan yang dimiliki, baik itu kecerdasan, kecantikan, kekayaan, atau prestasi, sehingga melupakan bahwa semua itu adalah karunia Allah. Orang yang ujub mudah terjatuh dalam perangkap kesombongan halus, dan sering menilai dirinya lebih hebat dari orang lain.</p>
+        <p>Imam Al-Ghazali dalam Ihya Ulumiddin mengatakan bahwa ujub adalah racun halus yang menghancurkan amal baik seseorang karena ia mulai bergantung pada pujian manusia dan bukan pada ridha Allah.</p>
+        <h4>Contoh Perilaku Ujub:</h4>
+        <ol>
+            <li>Membanggakan prestasi akademik secara berlebihan dan merendahkan teman yang tidak seprestasi.</li>
+            <li>Menyombongkan penampilan fisik atau pakaian mahal.</li>
+            <li>Merasa paling pintar dalam diskusi sehingga tidak mau mendengar pendapat lain.</li>
+        </ol>`,
+
+        `<h2>2. HASAD dan DENGKI</h2>
+        <h3>A. HASAD</h3>
+        <p>Pengertian (dari Kitab Ihya Ulumiddin dan Al-Qur’an): Hasad adalah perasaan iri hati yang muncul ketika melihat orang lain mendapat nikmat, sehingga berharap nikmat tersebut hilang dari orang tersebut. Dalam QS. Al-Falaq ayat 5 disebutkan:<br>
+        <em>"Dan dari kejahatan orang yang dengki ketika dia dengki."</em></p>
+        <p>Hasad adalah penyakit hati yang sangat berbahaya karena dapat menimbulkan permusuhan dan menghancurkan hubungan sosial. Orang yang hasad merasa tidak pernah cukup dengan apa yang dimilikinya dan terus membanding-bandingkan diri dengan orang lain.</p>
+        <h4>Contoh Perilaku Hasad:</h4>
+        <ol>
+            <li>Merasa tidak senang jika teman mendapatkan hadiah atau penghargaan.</li>
+            <li>Menggosipkan atau menyebarkan hal buruk tentang orang yang lebih sukses.</li>
+            <li>Tidak mau membantu teman yang sedang berhasil karena merasa iri.</li>
+        </ol>
+        <hr style="border-color: #444;">
+        <h3>B. DENGKI</h3>
+        <p>Pengertian: Dengki mirip dengan hasad, namun lebih dalam. Dengki adalah rasa sakit hati dan tidak rela jika orang lain mendapat kebahagiaan, bahkan kalau bisa ingin orang tersebut sengsara atau mendapat musibah. Dengki sangat dilarang dalam Islam karena menimbulkan kehancuran sosial dan spiritual.</p>
+        <p>Imam Al-Ghazali menyebutkan bahwa dengki adalah akar dari banyak dosa dan dapat membuat hati seseorang gelap dan keras.</p>
+        <h4>Contoh Perilaku Dengki:</h4>
+        <ol>
+            <li>Mendoakan atau berharap teman gagal atau mendapat kesusahan.</li>
+            <li>Menyebarkan fitnah untuk menjatuhkan reputasi orang lain.</li>
+            <li>Memusuhi atau menjauhi orang yang lebih sukses.</li>
+        </ol>`,
+
+        `<h2>3. BAHAYA NAFSU dan SYAHWAT YANG TAK TERKENDALI</h2>
+        <h3>A. Nafsu</h3>
+        <p>Pengertian (dari Kitab Tazkiyatun Nafs dan Ihya Ulumiddin): Nafsu adalah dorongan hati yang mengajak kepada hal-hal yang disenangi, baik yang baik maupun buruk. Nafsu memiliki dua jenis: nafsu amarah (yang mendorong pada kemarahan dan kejahatan) dan nafsu mutmainnah (yang tenang dan ridha pada ketentuan Allah). Nafsu yang tidak terkendali akan membawa manusia pada kemaksiatan, kebodohan, dan kehancuran diri.</p>
+        <p>Imam Al-Ghazali menegaskan bahwa menjaga nafsu adalah perjuangan utama manusia dalam mencapai kesucian jiwa dan kebahagiaan hakiki.</p>
+        <h4>Contoh Perilaku Nafsu yang Tidak Terkendali:</h4>
+        <ol>
+            <li>Marah besar dan berkelahi karena masalah sepele.</li>
+            <li>Makan berlebihan sampai sakit atau boros.</li>
+            <li>Mengumbar emosi tanpa kendali sehingga menyakiti orang lain.</li>
+        </ol>
+        <hr style="border-color: #444;">
+        <h3>B. Syahwat</h3>
+        <p>Pengertian: Syahwat adalah dorongan kuat untuk memenuhi kebutuhan biologis seperti nafsu seksual dan keinginan duniawi lainnya. Syahwat jika tidak dikendalikan akan menjerumuskan seseorang pada dosa besar, seperti zina, perbuatan maksiat, dan ketergantungan pada hal-hal duniawi yang berlebihan.</p>
+        <p>Dalam Islam, syahwat harus dikendalikan dengan cara yang halal, seperti menikah dan menjauhi perbuatan yang dilarang.</p>
+        <h4>Contoh Perilaku Syahwat yang Tidak Terkendali:</h4>
+        <ol>
+            <li>Melakukan perbuatan zina atau pacaran tanpa ikatan halal.</li>
+            <li>Terjebak dalam pornografi atau konten yang merusak moral.</li>
+            <li>Menghamburkan uang untuk hal-hal yang memuaskan nafsu duniawi tanpa batas.</li>
+        </ol>`,
+
+        `<h2>✅ PENUTUP</h2>
+        <p>Akhlak tercela seperti sombong, ujub, hasad, dengki, serta nafsu dan syahwat yang tidak terkendali adalah penyakit hati yang berbahaya dan dapat merusak hubungan manusia dengan Allah dan sesama. Dengan memahami dan mengenali bahaya ini, kita diajak untuk senantiasa menjaga hati dan berusaha memperbaiki akhlak agar menjadi pribadi yang lebih baik, selaras dengan ajaran Islam yang mulia.</p>
+        <p style="text-align:center; font-size:1.2rem; font-weight:700; margin-top: 2rem; color:#ffd966; text-shadow: 0 0 6px #ddbb22;">
+          Terima kasih telah mempelajari materi Akhlak Tercela!
+        </p>`
+    ];
+
+    let currentPage = 0;
+
+    const popup = document.getElementById('popupContent');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updatePage() {
+        popup.innerHTML = pages[currentPage];
+        prevBtn.disabled = currentPage === 0;
+        nextBtn.disabled = currentPage === pages.length - 1;
+        // Scroll popup to top when page changes
+        popup.scrollTop = 0;
+    }
+
+    function nextPage() {
+        if (currentPage < pages.length - 1) {
+            currentPage++;
+            updatePage();
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 0) {
+            currentPage--;
+            updatePage();
+        }
+    }
+
+    // Initialize first page
+    updatePage();
+</script>
+
+</body>
+</html>

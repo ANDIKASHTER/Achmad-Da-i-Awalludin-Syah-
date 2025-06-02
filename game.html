@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gacha Islami</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&family=Lateef&display=swap');
+
+    /* Islamic geometric background pattern */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:
+        radial-gradient(circle at center, #d5e8d4 1px, transparent 1px),
+        radial-gradient(circle at center, #d5e8d4 1px, transparent 1px);
+      background-position: 0 0, 25px 25px;
+      background-size: 50px 50px;
+      font-family: 'Reem Kufi', 'Lateef', cursive, sans-serif;
+      color: #234d20;
+      user-select: none;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      border: 3px solid #2a6f35;
+      border-radius: 20px;
+      width: 380px;
+      max-width: 90vw;
+      box-shadow:
+        0 0 15px rgba(42, 111, 53, 0.4),
+        inset 0 0 20px rgba(170, 200, 170, 0.7);
+      padding: 30px 25px 40px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-weight: 700;
+      color: #1e4d1e;
+      font-size: 2.2rem;
+      text-shadow: 0 1px 1px #a1c292;
+      letter-spacing: 2px;
+    }
+
+    #gacha-display {
+      margin: 25px auto 30px;
+      width: 150px;
+      height: 150px;
+      line-height: 150px;
+      font-size: 5rem;
+      font-weight: 900;
+      border: 8px solid #2a6f35;
+      border-radius: 50%;
+      color: #2a6f35;
+      background: radial-gradient(circle at center, #ebf4e6, #c5ddad);
+      box-shadow:
+        0 0 25px 4px #85b778aa,
+        inset 0 0 35px 11px #d1e8be;
+      user-select: none;
+      transition: all 0.4s ease;
+      text-shadow:
+        2px 2px 4px #a4d37b,
+        0 0 5px #8bc34aaa;
+    }
+
+    button#gacha-button {
+      background: linear-gradient(135deg, #4a7c2d, #89b96e);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      padding: 14px 38px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      cursor: pointer;
+      box-shadow:
+        0 7px 10px #59813288,
+        inset 0 -3px 8px #2e5b16;
+      transition: background-color 0.35s ease, transform 0.15s ease;
+    }
+    button#gacha-button:hover:not(:disabled) {
+      background: linear-gradient(135deg, #89b96e, #4a7c2d);
+      transform: scale(1.08);
+    }
+    button#gacha-button:disabled {
+      background: #9dc28a8c;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    #attribute-display {
+      margin-top: 40px;
+      font-size: 1.6rem;
+      min-height: 72px;
+      font-weight: 700;
+      color: #356426;
+      letter-spacing: 1.1px;
+      padding: 0 12px;
+      text-shadow: 1px 1px 2px #b9deb0;
+      transition: opacity 0.4s ease;
+      user-select: none;
+      min-height: 70px;
+    }
+
+    #message-display {
+      margin-top: 25px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4b7026;
+      letter-spacing: 0.6px;
+      line-height: 1.4em;
+      user-select: none;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+    }
+
+    footer {
+      margin-top: 48px;
+      font-size: 0.8rem;
+      color: #55843fcc;
+      text-align: center;
+      font-style: italic;
+      user-select: none;
+    }
+
+    /* Animations */
+    @keyframes rotateGlow {
+      0% { box-shadow: 0 0 20px #67a03d, inset 0 0 30px #9ddd5a; }
+      50% { box-shadow: 0 0 40px #7dcc51, inset 0 0 50px #aef470; }
+      100% { box-shadow: 0 0 20px #67a03d, inset 0 0 30px #9ddd5a; }
+    }
+
+    #gacha-display.animating {
+      animation: rotateGlow 2s infinite ease-in-out;
+      color: #ffffffcc;
+      text-shadow:
+        0 0 8px #bbff6a,
+        0 0 14px #d2ff81;
+      background: linear-gradient(45deg, #589134, #a5f158);
+      border-color: #c6ff7b;
+      box-shadow:
+        0 0 35px 6px #bbff6a,
+        inset 0 0 40px 18px #d2ff81;
+    }
+
+    /* Attribute cycling animation */
+    #attribute-display.animating {
+      animation: pulseGlow 1.3s infinite alternate;
+      color: #3a6c19cc;
+      text-shadow: 0 0 6px #a8df7a;
+    }
+
+    @keyframes pulseGlow {
+      0% { text-shadow: 0 0 6px #9acd32; }
+      100% { text-shadow: 0 0 18px #e0f48c; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Gacha Islami">
+    <h1>Peragakan Akhlak</h1>
+    <div id="gacha-display" aria-live="polite" aria-atomic="true">?</div>
+    <button id="gacha-button" aria-label="Mulai gacha nomor 1 hingga 38">Gacha</button>
+    <div id="attribute-display" aria-live="polite" aria-atomic="true"></div>
+    <div id="message-display" role="alert"></div>
+    <footer>Semoga Allah memberkahi praktekmu dan perbaikan akhlak</footer>
+  </div>
+
+  <script>
+    (() => {
+      const maxNumber = 38;
+      const attributes = [
+        'Ikhlas',
+        'Tawadhu',
+        'Jujur',
+        'Amanah',
+        'Sabar',
+        'Syukur',
+        'Sombong',
+        'Ujub',
+        'Hasad',
+        'Dengki',
+        'Nafsu',
+        'Syahwat'
+      ];
+
+      const gachaDisplay = document.getElementById('gacha-display');
+      const attrDisplay = document.getElementById('attribute-display');
+      const messageDisplay = document.getElementById('message-display');
+      const gachaButton = document.getElementById('gacha-button');
+
+      let animationTimeouts = [];
+      let selectedNumber = null;
+      let selectedAttribute = null;
+
+      function clearAnimations() {
+        animationTimeouts.forEach(t => clearTimeout(t));
+        animationTimeouts = [];
+        gachaDisplay.classList.remove('animating');
+        attrDisplay.classList.remove('animating');
+        attrDisplay.textContent = '';
+        messageDisplay.style.opacity = 0;
+        messageDisplay.textContent = '';
+      }
+
+      function animateNumbers(callback) {
+        gachaDisplay.classList.add('animating');
+        let count = 0;
+        const totalCycles = 30; // reduced from 60 to speed up animation
+
+        function cycle() {
+          let intervalDuration = 30 + (count * 5); // reduced from 50 + (count * 15) to speed up
+          count++;
+          const randomNum = Math.floor(Math.random() * maxNumber) + 1;
+          gachaDisplay.textContent = randomNum;
+
+          if (count < totalCycles) {
+            animationTimeouts.push(setTimeout(cycle, intervalDuration));
+          } else {
+            gachaDisplay.classList.remove('animating');
+            selectedNumber = randomNum;
+            callback(selectedNumber);
+          }
+        }
+        cycle();
+      }
+
+      function animateAttributes(callback) {
+        attrDisplay.classList.add('animating');
+        let cycles = 0;
+        const maxCycles = 20; // reduced from 40 to speed up animation
+        let currentIndex = 0;
+        let interval = 60; // reduced from 100
+
+        function cycle() {
+          attrDisplay.textContent = attributes[currentIndex];
+          currentIndex = (currentIndex + 1) % attributes.length;
+
+          cycles++;
+          if (cycles < maxCycles) {
+            animationTimeouts.push(setTimeout(cycle, interval));
+            // slow down cycle towards end
+            if (cycles > maxCycles * 0.7) {
+              interval += 5; // reduced from 10 to slow down less
+            }
+          } else {
+            attrDisplay.classList.remove('animating');
+            selectedAttribute = attributes[(currentIndex + attributes.length - 1) % attributes.length];
+            callback(selectedAttribute);
+          }
+        }
+        cycle();
+      }
+
+      function showMessage(attribute) {
+        messageDisplay.textContent = `Praktekkan "${attribute}", dan tanyakan kepada temanmu apakah akhlak yang saya praktekkan sesuai.`;
+        messageDisplay.style.opacity = 1;
+      }
+
+      gachaButton.addEventListener('click', () => {
+        gachaButton.disabled = true;
+        clearAnimations();
+        gachaDisplay.textContent = '?';
+        attrDisplay.textContent = '';
+        messageDisplay.style.opacity = 0;
+        messageDisplay.textContent = '';
+
+        animateNumbers(selectedNum => {
+          // After number is chosen, animate attributes
+          animateAttributes(selectedAttr => {
+            showMessage(selectedAttr);
+            gachaButton.disabled = false;
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Video Inspiratif</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background: url('https://www.ahmadzain.com/img/masjid.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+        }
+        /* Overlay for better text readability */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        h1 {
+            text-align: center;
+            margin: 30px 20px 10px 20px;
+            font-size: 2.8rem;
+            color: #ffd966;
+            text-shadow: 0 0 8px #c38f00;
+        }
+        /* Popup container and style */
+        .popup {
+            max-width: 900px;
+            background: #222a33cc; /* semi-transparent dark */
+            margin: 0 auto 40px auto;
+            padding: 25px 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+            position: relative;
+        }
+        .popup h2 {
+            color: #ffd966;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-align: center;
+            text-shadow: 0 0 6px #d0a700;
+        }
+        .video-wrapper {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        iframe {
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+            width: 100%;
+            max-width: 420px;
+            height: 240px;
+        }
+        /* Navigation Buttons */
+        .nav-buttons {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+        button {
+            background: #ffd966;
+            border: none;
+            border-radius: 25px;
+            color: #333;
+            font-weight: 700;
+            padding: 12px 30px;
+            margin: 0 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(255, 217, 102, 0.6);
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        button:hover:not(:disabled) {
+            background: #e6c542;
+            box-shadow: 0 6px 12px rgba(230, 197, 66, 0.8);
+        }
+        button:disabled {
+            opacity: 0.4;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Video Inspiratif</h1>
+
+<div class="popup" id="popupContent">
+    <!-- Content injected by JS -->
+</div>
+
+<div class="nav-buttons">
+    <button id="prevBtn" onclick="prevPage()" disabled>Prev</button>
+    <button id="nextBtn" onclick="nextPage()">Next</button>
+</div>
+
+<script>
+    const pages = [
+        `<h2>Video Inspiratif 1</h2>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/tZndPa6EBsA" title="Video Inspiratif 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>`,
+
+        `<h2>Video Inspiratif 2</h2>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/SFK3bDVfXE0" title="Video Inspiratif 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>`,
+    ];
+
+    let currentPage = 0;
+    const popup = document.getElementById('popupContent');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updatePage() {
+        popup.innerHTML = pages[currentPage];
+        prevBtn.disabled = currentPage === 0;
+        nextBtn.disabled = currentPage === pages.length - 1;
+        popup.scrollTop = 0;
+    }
+
+    function nextPage() {
+        if (currentPage < pages.length - 1) {
+            currentPage++;
+            updatePage();
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 0) {
+            currentPage--;
+            updatePage();
+        }
+    }
+
+    updatePage();
+</script>
+
+</body>
+</html>
+

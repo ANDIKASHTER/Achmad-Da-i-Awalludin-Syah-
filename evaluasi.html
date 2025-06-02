@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evaluasi Akhlak-tazkiyatun nafs</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo&family=Montserrat:wght@700&family=Poppins&display=swap');
+
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
+            color: #333;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 60px auto 40px;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 2.5rem;
+            color: #00796b;
+            user-select: none;
+        }
+
+        /* Question container */
+        .question-container {
+            flex-grow: 1;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #004d40;
+        }
+
+        .options {
+            margin-left: 20px;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 140px;
+            font-size: 1.1rem;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #00796b;
+            resize: vertical;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 8px;
+        }
+
+        /* Navigation buttons */
+        .nav-buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            background-color: #00796b;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s ease;
+        }
+
+        button:disabled {
+            background-color: #b2dfdb;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #004d40;
+        }
+
+        /* Progress Indicator */
+        .progress {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #00796b;
+            font-size: 1.1rem;
+            user-select: none;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 0 25px #00796baa;
+        }
+
+        .modal-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #00796b;
+            font-weight: 700;
+            user-select: none;
+        }
+
+        .modal-content button {
+            background-color: #d32f2f;
+            padding: 10px 25px;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+        }
+
+        .modal-content button:hover {
+            background-color: #9a2222;
+        }
+
+        /* Result */
+        .result-container {
+            display: none;
+            text-align: center;
+        }
+
+        .result-container.active {
+            display: block;
+        }
+
+        .result-score {
+            font-size: 2.1rem;
+            color: #00796b;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .result-message {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .question-text,
+            .options label,
+            textarea {
+                font-size: 1rem;
+            }
+
+            button {
+                padding: 10px;
+                font-size: 1rem;
+            }
+
+            .modal-content {
+                max-width: 90vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Evaluasi Tazkiyatun Nafs</h1>
+    </header>
+    <main class="container" role="main">
+        <div class="progress" id="progressText">Pertanyaan 1 dari 15</div>
+        <form id="evalForm" autocomplete="off">
+            <div class="question-container" id="questionContainer"></div>
+            <div class="nav-buttons">
+                <button type="button" id="prevBtn" disabled>Previous</button>
+                <button type="button" id="nextBtn">Next</button>
+            </div>
+        </form>
+
+        <div class="result-container" id="resultContainer" aria-live="polite" role="region" tabindex="0">
+            <div class="result-score" id="finalScore"></div>
+            <div class="result-message">Terima kasih telah menyelesaikan evaluasi! Jawaban essay akan dikoreksi secara manual dan dikirim ke WhatsApp Anda.</div>
+        </div>
+    </main>
+
+    <!-- Warning Modal -->
+    <div class="modal" id="warningModal" role="alertdialog" aria-modal="true" aria-labelledby="modalTitle"
+        aria-describedby="modalDesc">
+        <div class="modal-content">
+            <p id="modalDesc">Jangan coba coba untuk menyontek!</p>
+            <button id="resetBtn">Mulai Ulang</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            { type: 'mcq', question: 'Pengertian ikhlas adalah...', options: { A: 'Berbuat baik untuk mendapatkan pujian orang lain', B: 'Beramal hanya karena mengharap ridha Allah semata', C: 'Melakukan sesuatu dengan tujuan mendapat keuntungan duniawi', D: 'Menyombongkan diri atas kebaikan yang dilakukan' }, answer: 'B' },
+            { type: 'mcq', question: 'Sikap tawadhu berarti...', options: { A: 'Merasa diri paling hebat dan paling benar', B: 'Rendah hati dan tidak sombong terhadap orang lain', C: 'Menganggap remeh orang lain', D: 'Memamerkan kelebihan diri' }, answer: 'B' },
+            { type: 'mcq', question: 'Perilaku jujur dalam kehidupan sehari-hari contohnya adalah...', options: { A: 'Membesar-besarkan cerita agar terlihat hebat', B: 'Mengakui kesalahan meski malu', C: 'Berbohong agar terbebas dari hukuman', D: 'Menyembunyikan kebenaran' }, answer: 'B' },
+            { type: 'mcq', question: 'Amanah artinya...', options: { A: 'Menjaga kepercayaan yang diberikan dengan penuh tanggung jawab', B: 'Mengabaikan tugas karena tidak suka', C: 'Melakukan tugas asal-asalan', D: 'Menyerahkan tugas ke orang lain tanpa izin' }, answer: 'A' },
+            { type: 'mcq', question: 'Sabar adalah...', options: { A: 'Menyerah ketika mendapat kesulitan', B: 'Bersikap tenang dan tetap bertahan dalam menghadapi cobaan', C: 'Marah saat tidak sesuai keinginan', D: 'Mengeluh terus menerus saat menghadapi masalah' }, answer: 'B' },
+            { type: 'mcq', question: 'Syukur adalah...', options: { A: 'Merasa cukup dengan nikmat yang ada dan berterima kasih kepada Allah', B: 'Mengeluh karena merasa kurang', C: 'Menganggap semua nikmat berasal dari usaha sendiri', D: 'Membandingkan diri dengan orang lain yang lebih beruntung' }, answer: 'A' },
+            { type: 'mcq', question: 'Sifat sombong adalah...', options: { A: 'Merasa rendah diri di depan orang lain', B: 'Menganggap diri lebih baik dari orang lain dan meremehkan mereka', C: 'Bersikap ramah kepada semua orang', D: 'Menghargai orang lain' }, answer: 'B' },
+            { type: 'mcq', question: 'Ujub adalah...', options: { A: 'Merasa bangga berlebihan kepada diri sendiri dan lupa bahwa semua adalah karunia Allah', B: 'Rendah hati dan tidak ingin dipuji', C: 'Selalu merasa kurang diri', D: 'Tidak peduli dengan pendapat orang lain' }, answer: 'A' },
+            { type: 'mcq', question: 'Hasad berbeda dengan dengki karena...', options: { A: 'Hasad ingin nikmat orang lain hilang, dengki juga ingin orang lain sengsara', B: 'Hasad merasa senang dengan keberhasilan orang lain', C: 'Hasad dan dengki sama saja', D: 'Dengki adalah rasa kagum kepada orang lain' }, answer: 'A' },
+            { type: 'mcq', question: 'Bahaya nafsu dan syahwat yang tidak terkendali dapat menyebabkan...', options: { A: 'Kebahagiaan dan ketenangan jiwa', B: 'Dosa besar dan kerusakan diri', C: 'Menjadi pribadi yang disiplin', D: 'Mendapat pahala berlimpah' }, answer: 'B' },
+            { type: 'essay', question: 'Jelaskan dengan lengkap apa yang dimaksud dengan akhlak ikhlas dan berikan tiga contoh sikap ikhlas dalam kehidupan sehari-hari!', answer: '' },
+            { type: 'essay', question: 'Apa makna tawadhu menurut pandangan Islam? Mengapa sifat tawadhu sangat penting dalam hubungan sosial?', answer: '' },
+            { type: 'essay', question: 'Jelaskan perbedaan antara hasad dan dengki! Berikan contoh nyata dari kehidupan sehari-hari untuk masing-masing!', answer: '' },
+            { type: 'essay', question: 'Mengapa sifat sombong dan ujub sangat dilarang dalam Islam? Jelaskan akibat dari sikap tersebut baik bagi diri sendiri maupun lingkungan sosial!', answer: '' },
+            { type: 'essay', question: 'Jelaskan bahaya nafsu dan syahwat yang tidak terkendali menurut pandangan Islam! Bagaimana cara seorang muslim mengendalikan nafsu dan syahwatnya agar tidak merusak akhlak?', answer: '' },
+        ];
+
+        let currentQuestionIndex = 0;
+        const totalQuestions = questions.length;
+
+        const questionContainer = document.getElementById('questionContainer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressText = document.getElementById('progressText');
+        const evalForm = document.getElementById('evalForm');
+        const resultContainer = document.getElementById('resultContainer');
+        const finalScore = document.getElementById('finalScore');
+        const modal = document.getElementById('warningModal');
+        const resetBtn = document.getElementById('resetBtn');
+
+        // Flag to show modal only once per cheating event batch
+        let modalShown = false;
+
+        function showQuestion(index) {
+            progressText.textContent = `Pertanyaan ${index + 1} dari ${totalQuestions}`;
+            const q = questions[index];
+            questionContainer.innerHTML = '';
+
+            if (q.type === 'mcq') {
+                const questionText = document.createElement('p');
+                questionText.className = 'question-text';
+                questionText.textContent = `${index + 1}. ${q.question}`;
+                questionContainer.appendChild(questionText);
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options';
+
+                for (const [key, value] of Object.entries(q.options)) {
+                    const label = document.createElement('label');
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = 'option';
+                    input.value = key;
+                    input.required = true;
+
+                    if (q.userAnswer && q.userAnswer === key) {
+                        input.checked = true;
+                    }
+
+                    input.addEventListener('change', () => {
+                        q.userAnswer = input.value;
+                    });
+
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(` ${key}. ${value}`));
+                    optionsDiv.appendChild(label);
+                }
+                questionContainer.appendChild(optionsDiv);
+            } else if (q.type === 'essay') {
+                const questionText = document.createElement('p');
+                questionText.className = 'question-text';
+                questionText.textContent = `${index + 1}. ${q.question}`;
+                questionContainer.appendChild(questionText);
+
+                const textarea = document.createElement('textarea');
+                textarea.name = 'essayAnswer';
+                textarea.required = true;
+                textarea.value = q.userAnswer || '';
+                textarea.placeholder = 'Tulis jawaban anda di sini...';
+                textarea.addEventListener('input', (e) => {
+                    q.userAnswer = e.target.value;
+                });
+                questionContainer.appendChild(textarea);
+            }
+
+            prevBtn.disabled = index === 0;
+            nextBtn.textContent = index === totalQuestions - 1 ? 'Kirim' : 'Next';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestionIndex > 0 && !modal.classList.contains('active')) {
+                currentQuestionIndex--;
+                showQuestion(currentQuestionIndex);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (modal.classList.contains('active')) {
+                return; // Prevent navigating while modal active
+            }
+
+            const q = questions[currentQuestionIndex];
+            if (q.type === 'mcq') {
+                const selected = document.querySelector('input[name="option"]:checked');
+                if (!selected) {
+                    alert('Silakan pilih salah satu jawaban sebelum melanjutkan.');
+                    return;
+                }
+                q.userAnswer = selected.value;
+            } else {
+                const textarea = questionContainer.querySelector('textarea');
+                if (!textarea.value.trim()) {
+                    alert('Silakan isi jawaban essay sebelum melanjutkan.');
+                    return;
+                }
+                q.userAnswer = textarea.value.trim();
+            }
+
+            if (currentQuestionIndex === totalQuestions - 1) {
+                submitQuiz();
+            } else {
+                currentQuestionIndex++;
+                showQuestion(currentQuestionIndex);
+            }
+        });
+
+        function submitQuiz() {
+            // Calculate score for MCQs only
+            let score = 0;
+            questions.forEach(q => {
+                if (q.type === 'mcq' && q.userAnswer === q.answer) {
+                    score += 10;
+                }
+            });
+
+            evalForm.style.display = 'none';
+            progressText.style.display = 'none';
+            resultContainer.classList.add('active');
+            finalScore.textContent = `Skor Anda: ${score} dari 100`;
+
+            // Prepare WhatsApp message content, encodeURIComponent applied
+            let message = encodeURIComponent(
+`Evaluasi Sholat - Hasil Peserta:
+
+Skor Pilihan Ganda: ${score}
+
+Jawaban Essay:
+${questions.filter(q => q.type === 'essay').map((q, i) =>
+`${i + 1}. ${q.question}
+Jawaban: ${q.userAnswer || '(Tidak diisi)'}`
+).join('\n\n')}
+`);
+
+            const waNumber = '6289519788638'; // WhatsApp number in Indonesia format
+            const waUrl = `https://wa.me/${waNumber}?text=${message}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function showModal() {
+            if (!modalShown) {
+                modal.classList.add('active');
+                modalShown = true;
+            }
+        }
+
+        function hideModal() {
+            modal.classList.remove('active');
+            modalShown = false;
+        }
+
+        resetBtn.addEventListener('click', () => {
+            hideModal();
+            questions.forEach(q => q.userAnswer = '');
+            currentQuestionIndex = 0;
+            showQuestion(currentQuestionIndex);
+            evalForm.style.display = 'flex';
+            progressText.style.display = 'block';
+            resultContainer.classList.remove('active');
+        });
+
+        // Show modal on blur only once until reset
+        window.addEventListener('blur', () => {
+            showModal();
+        });
+
+        // Show modal on minimize (small window) only once until reset
+        window.addEventListener('resize', () => {
+            if ((window.innerWidth < 300 || window.innerHeight < 300) && !modal.classList.contains('active')) {
+                alert('Mau ngapain?');
+                showModal();
+            }
+        });
+
+        // Prevent modal close on outside click or ESC key
+        modal.addEventListener('click', e => {
+            e.stopPropagation();
+        });
+        window.addEventListener('keydown', e => {
+            if (modal.classList.contains('active')) {
+                if (e.key === "Escape" || e.key === "Esc") {
+                    e.preventDefault();
+                }
+            }
+        });
+
+        // Initialize first question
+        showQuestion(currentQuestionIndex);
+    </script>
+</body>
+
+</html>
