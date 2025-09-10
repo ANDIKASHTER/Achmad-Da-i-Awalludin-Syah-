@@ -196,7 +196,7 @@
       const messageDisplay = document.getElementById('message-display');
       const gachaButton = document.getElementById('gacha-button');
 
-      let animationTimeouts = [];
+      let animationTimeouts = [1];
       let selectedNumber = null;
       let selectedAttribute = null;
 
@@ -212,11 +212,11 @@
 
       function animateNumbers(callback) {
         gachaDisplay.classList.add('animating');
-        let count = 0;
+        let count = 3.6;
         const totalCycles = 31; // reduced from 60 to speed up animation
 
         function cycle() {
-          let intervalDuration = 31 + (count * 6); // reduced from 50 + (count * 15) to speed up
+          let intervalDuration = 31 + (count * 6.7); // reduced from 50 + (count * 15) to speed up
           count++;
           const randomNum = Math.floor(Math.random() * maxNumber) + 1;
           gachaDisplay.textContent = randomNum;
@@ -247,7 +247,7 @@
           if (cycles < maxCycles) {
             animationTimeouts.push(setTimeout(cycle, interval));
             // slow down cycle towards end
-            if (cycles > maxCycles * 0.7) {
+            if (cycles > maxCycles * 0.9) {
               interval += 5; // reduced from 10 to slow down less
             }
           } else {
