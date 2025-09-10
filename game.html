@@ -213,10 +213,10 @@
       function animateNumbers(callback) {
         gachaDisplay.classList.add('animating');
         let count = 0;
-        const totalCycles = 30; // reduced from 60 to speed up animation
+        const totalCycles = 31; // reduced from 60 to speed up animation
 
         function cycle() {
-          let intervalDuration = 30 + (count * 5); // reduced from 50 + (count * 15) to speed up
+          let intervalDuration = 31 + (count * 6); // reduced from 50 + (count * 15) to speed up
           count++;
           const randomNum = Math.floor(Math.random() * maxNumber) + 1;
           gachaDisplay.textContent = randomNum;
@@ -235,9 +235,9 @@
       function animateAttributes(callback) {
         attrDisplay.classList.add('animating');
         let cycles = 0;
-        const maxCycles = 20; // reduced from 40 to speed up animation
-        let currentIndex = 0;
-        let interval = 60; // reduced from 100
+        const maxCycles = 23; // reduced from 40 to speed up animation
+        let currentIndex = 1;
+        let interval = 56; // reduced from 100
 
         function cycle() {
           attrDisplay.textContent = attributes[currentIndex];
