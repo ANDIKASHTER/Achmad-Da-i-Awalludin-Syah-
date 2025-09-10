@@ -252,9 +252,12 @@
             }
           } else {
             attrDisplay.classList.remove('animating');
-            selectedAttribute = attributes[(currentIndex + attributes.length - 1) % attributes.length];
-            callback(selectedAttribute);
-          }
+      // pilih random, bukan hanya index terakhir
+      selectedAttribute = attributes[Math.floor(Math.random() * attributes.length)];
+      attrDisplay.textContent = selectedAttribute;
+      callback(selectedAttribute);
+    }
+
         }
         cycle();
       }
