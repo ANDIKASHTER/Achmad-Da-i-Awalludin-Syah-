@@ -14,12 +14,12 @@
             background: url('https://www.ahmadzain.com/img/masjid.jpg') no-repeat center center fixed;
             background-size: cover;
         }
-        /* Overlay for better text readability */
+        /* Overlay */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgb(0, 0, 0);
             z-index: -1;
         }
         h1 {
@@ -29,22 +29,23 @@
             color: #ffd966;
             text-shadow: 0 0 8px #c38f00;
         }
-        /* Popup container and style */
         .popup {
             max-width: 800px;
-            background: #222a33cc; /* semi-transparent dark */
+            background: #000000cc;
             margin: 0 auto 40px auto;
             padding: 25px 35px;
             border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+            box-shadow: 0 10px 20px rgba(0,0,0,0);
             position: relative;
+            overflow-y: auto;
+            max-height: 70vh;
         }
         .popup h2 {
-            color: #ffd966;
+            color: #dfb741;
             font-weight: 700;
             margin-bottom: 15px;
             text-align: center;
-            text-shadow: 0 0 6px #d0a700;
+            text-shadow: 0 0 6px #b4992b;
         }
         .popup h3 {
             color: #fff9c4;
@@ -55,7 +56,7 @@
         }
         .popup h4 {
             margin-top: 18px;
-            color: #fff59d;
+            color: #979477;
             font-weight: 700;
             text-shadow: 0 0 4px #b7a500;
         }
@@ -63,8 +64,8 @@
             font-size: 1rem;
             line-height: 1.5;
             margin-bottom: 14px;
-            text-shadow: 0 0 3px rgba(0,0,0,0.8);
-            color: white;
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+            color: rgb(255, 255, 255);
         }
         ol {
             padding-left: 1.5em;
@@ -72,7 +73,6 @@
         ol li {
             margin-bottom: 0.7em;
         }
-        /* Navigation Buttons */
         .nav-buttons {
             text-align: center;
             margin-top: -20px;
@@ -82,7 +82,7 @@
             background: #ffd966;
             border: none;
             border-radius: 25px;
-            color: #333;
+            color: #000000;
             font-weight: 700;
             padding: 12px 30px;
             margin: 0 12px;
@@ -107,7 +107,7 @@
 <h1>Akhlak Tercela</h1>
 
 <div class="popup" id="popupContent">
-    <!-- Content will be injected by JavaScript -->
+    <!-- Konten diisi JS -->
 </div>
 
 <div class="nav-buttons">
@@ -116,82 +116,92 @@
 </div>
 
 <script>
-    // Array of page contents as HTML strings
     const pages = [
-        `<h2>1. SOMBONG dan UJUB</h2>
-        <h3>A. SOMBONG (Kibr)</h3>
-        <p>Pengertian (dari Kitab Ihya Ulumiddin oleh Imam Al-Ghazali): Sombong adalah sikap merasa diri lebih tinggi, lebih baik, dan lebih mulia dari orang lain tanpa alasan yang benar, serta memandang rendah orang lain. Dalam bahasa Arab disebut kibr, yang merupakan salah satu sifat tercela yang sangat dibenci Allah SWT. Rasulullah SAW bersabda:<br>
-        <em>"Tidak akan masuk surga orang yang di dalam hatinya ada seberat biji sawi dari kesombongan." (HR. Muslim)</em></p>
-        <p>Imam Al-Ghazali menjelaskan bahwa sombong adalah akar segala dosa besar karena menimbulkan rasa angkuh, enggan menerima kebenaran, dan merendahkan orang lain. Sombong sering membuat seseorang menolak nasehat dan merasa paling benar.</p>
-        <h4>Contoh Perilaku Sombong:</h4>
+        `<h2>1. GHIBAH (الغيبة)</h2>
+        <h3>Pengertian</h3>
+        <p>Membicarakan keburukan orang lain di belakangnya, meskipun hal itu benar adanya.</p>
+        <h3>Dalil</h3>
+        <p><em>"Dan janganlah sebagian kamu menggunjing sebagian yang lain. Sukakah salah seorang di antara kamu memakan daging saudaranya yang sudah mati? Maka tentulah kamu merasa jijik kepadanya..." (QS. Al-Hujurat: 12).</em></p>
+        <h3>Contoh dalam Kehidupan</h3>
         <ol>
-            <li>Menolak mengakui kesalahan meski sudah jelas salah.</li>
-            <li>Mengolok-olok atau meremehkan teman yang berpenampilan sederhana.</li>
-            <li>Menunjukkan kekayaan dengan pamer barang mahal untuk membuat iri orang lain.</li>
+            <li>Membicarakan kekurangan teman di belakangnya.</li>
+            <li>Menyebarkan cerita aib orang lain.</li>
         </ol>
-        <hr style="border-color: #444;">
-        <h3>B. UJUB (Riya dan Bangga Diri Berlebihan)</h3>
-        <p>Pengertian: Ujub adalah merasa bangga atau kagum berlebihan terhadap diri sendiri karena kelebihan yang dimiliki, baik itu kecerdasan, kecantikan, kekayaan, atau prestasi, sehingga melupakan bahwa semua itu adalah karunia Allah. Orang yang ujub mudah terjatuh dalam perangkap kesombongan halus, dan sering menilai dirinya lebih hebat dari orang lain.</p>
-        <p>Imam Al-Ghazali dalam Ihya Ulumiddin mengatakan bahwa ujub adalah racun halus yang menghancurkan amal baik seseorang karena ia mulai bergantung pada pujian manusia dan bukan pada ridha Allah.</p>
-        <h4>Contoh Perilaku Ujub:</h4>
+        <h3>Dampak Buruk</h3>
         <ol>
-            <li>Membanggakan prestasi akademik secara berlebihan dan merendahkan teman yang tidak seprestasi.</li>
-            <li>Menyombongkan penampilan fisik atau pakaian mahal.</li>
-            <li>Merasa paling pintar dalam diskusi sehingga tidak mau mendengar pendapat lain.</li>
+            <li>Merusak persaudaraan.</li>
+            <li>Menghilangkan pahala amal.</li>
+            <li>Mendapat dosa besar.</li>
         </ol>`,
 
-        `<h2>2. HASAD dan DENGKI</h2>
-        <h3>A. HASAD</h3>
-        <p>Pengertian (dari Kitab Ihya Ulumiddin dan Al-Qur’an): Hasad adalah perasaan iri hati yang muncul ketika melihat orang lain mendapat nikmat, sehingga berharap nikmat tersebut hilang dari orang tersebut. Dalam QS. Al-Falaq ayat 5 disebutkan:<br>
-        <em>"Dan dari kejahatan orang yang dengki ketika dia dengki."</em></p>
-        <p>Hasad adalah penyakit hati yang sangat berbahaya karena dapat menimbulkan permusuhan dan menghancurkan hubungan sosial. Orang yang hasad merasa tidak pernah cukup dengan apa yang dimilikinya dan terus membanding-bandingkan diri dengan orang lain.</p>
-        <h4>Contoh Perilaku Hasad:</h4>
+        `<h2>2. ZHALIM (الظلم)</h2>
+        <h3>Pengertian</h3>
+        <p>Menempatkan sesuatu bukan pada tempatnya, menyakiti, atau merugikan orang lain.</p>
+        <h3>Dalil</h3>
+        <p><em>Rasulullah SAW bersabda: "Kezhaliman adalah kegelapan pada hari kiamat." (HR. Bukhari dan Muslim).</em></p>
+        <h3>Contoh dalam Kehidupan</h3>
         <ol>
-            <li>Merasa tidak senang jika teman mendapatkan hadiah atau penghargaan.</li>
-            <li>Menggosipkan atau menyebarkan hal buruk tentang orang yang lebih sukses.</li>
-            <li>Tidak mau membantu teman yang sedang berhasil karena merasa iri.</li>
+            <li>Merampas hak orang lain.</li>
+            <li>Guru/pejabat yang pilih kasih.</li>
+            <li>Menganiaya orang yang lemah.</li>
         </ol>
-        <hr style="border-color: #444;">
-        <h3>B. DENGKI</h3>
-        <p>Pengertian: Dengki mirip dengan hasad, namun lebih dalam. Dengki adalah rasa sakit hati dan tidak rela jika orang lain mendapat kebahagiaan, bahkan kalau bisa ingin orang tersebut sengsara atau mendapat musibah. Dengki sangat dilarang dalam Islam karena menimbulkan kehancuran sosial dan spiritual.</p>
-        <p>Imam Al-Ghazali menyebutkan bahwa dengki adalah akar dari banyak dosa dan dapat membuat hati seseorang gelap dan keras.</p>
-        <h4>Contoh Perilaku Dengki:</h4>
+        <h3>Dampak Buruk</h3>
         <ol>
-            <li>Mendoakan atau berharap teman gagal atau mendapat kesusahan.</li>
-            <li>Menyebarkan fitnah untuk menjatuhkan reputasi orang lain.</li>
-            <li>Memusuhi atau menjauhi orang yang lebih sukses.</li>
+            <li>Mengundang murka Allah.</li>
+            <li>Menimbulkan kebencian dan perpecahan.</li>
+            <li>Tidak akan mendapatkan keberkahan hidup.</li>
         </ol>`,
 
-        `<h2>3. BAHAYA NAFSU dan SYAHWAT YANG TAK TERKENDALI</h2>
-        <h3>A. Nafsu</h3>
-        <p>Pengertian (dari Kitab Tazkiyatun Nafs dan Ihya Ulumiddin): Nafsu adalah dorongan hati yang mengajak kepada hal-hal yang disenangi, baik yang baik maupun buruk. Nafsu memiliki dua jenis: nafsu amarah (yang mendorong pada kemarahan dan kejahatan) dan nafsu mutmainnah (yang tenang dan ridha pada ketentuan Allah). Nafsu yang tidak terkendali akan membawa manusia pada kemaksiatan, kebodohan, dan kehancuran diri.</p>
-        <p>Imam Al-Ghazali menegaskan bahwa menjaga nafsu adalah perjuangan utama manusia dalam mencapai kesucian jiwa dan kebahagiaan hakiki.</p>
-        <h4>Contoh Perilaku Nafsu yang Tidak Terkendali:</h4>
+        `<h2>3. CINTA DUNIA (حب الدنيا)</h2>
+        <h3>Pengertian</h3>
+        <p>Terlalu mencintai harta, jabatan, dan kesenangan dunia hingga melupakan akhirat.</p>
+        <h3>Dalil</h3>
+        <p><em>Rasulullah SAW bersabda: "Cinta dunia adalah pangkal segala kesalahan (dosa)." (HR. Baihaqi).</em></p>
+        <h3>Contoh dalam Kehidupan</h3>
         <ol>
-            <li>Marah besar dan berkelahi karena masalah sepele.</li>
-            <li>Makan berlebihan sampai sakit atau boros.</li>
-            <li>Mengumbar emosi tanpa kendali sehingga menyakiti orang lain.</li>
+            <li>Lupa shalat karena sibuk bekerja.</li>
+            <li>Menghalalkan segala cara untuk mencari harta.</li>
+            <li>Lebih sibuk mengejar popularitas daripada ibadah.</li>
         </ol>
-        <hr style="border-color: #444;">
-        <h3>B. Syahwat</h3>
-        <p>Pengertian: Syahwat adalah dorongan kuat untuk memenuhi kebutuhan biologis seperti nafsu seksual dan keinginan duniawi lainnya. Syahwat jika tidak dikendalikan akan menjerumuskan seseorang pada dosa besar, seperti zina, perbuatan maksiat, dan ketergantungan pada hal-hal duniawi yang berlebihan.</p>
-        <p>Dalam Islam, syahwat harus dikendalikan dengan cara yang halal, seperti menikah dan menjauhi perbuatan yang dilarang.</p>
-        <h4>Contoh Perilaku Syahwat yang Tidak Terkendali:</h4>
+        <h3>Dampak Buruk</h3>
         <ol>
-            <li>Melakukan perbuatan zina atau pacaran tanpa ikatan halal.</li>
-            <li>Terjebak dalam pornografi atau konten yang merusak moral.</li>
-            <li>Menghamburkan uang untuk hal-hal yang memuaskan nafsu duniawi tanpa batas.</li>
+            <li>Hati keras dan lalai dari Allah.</li>
+            <li>Mudah berbuat dosa demi dunia.</li>
+            <li>Merugi di akhirat.</li>
         </ol>`,
 
-        `<h2>✅ PENUTUP</h2>
-        <p>Akhlak tercela seperti sombong, ujub, hasad, dengki, serta nafsu dan syahwat yang tidak terkendali adalah penyakit hati yang berbahaya dan dapat merusak hubungan manusia dengan Allah dan sesama. Dengan memahami dan mengenali bahaya ini, kita diajak untuk senantiasa menjaga hati dan berusaha memperbaiki akhlak agar menjadi pribadi yang lebih baik, selaras dengan ajaran Islam yang mulia.</p>
+        `<h2>4. SYAHWAT BERLEBIHAN (اتباع الشهوة)</h2>
+        <h3>Pengertian</h3>
+        <p>Menuruti hawa nafsu tanpa batas, sehingga melanggar aturan Allah.</p>
+        <h3>Dalil</h3>
+        <p><em>"Dan janganlah kamu mengikuti hawa nafsu, karena ia akan menyesatkan kamu dari jalan Allah..." (QS. Shad: 26).</em></p>
+        <h3>Contoh dalam Kehidupan</h3>
+        <ol>
+            <li>Tidak bisa menahan diri dari makanan/minuman haram.</li>
+            <li>Terjerumus pada zina, narkoba, atau maksiat lainnya.</li>
+            <li>Hidup hanya mengejar kesenangan sesaat.</li>
+        </ol>
+        <h3>Dampak Buruk</h3>
+        <ol>
+            <li>Hati tidak tenang.</li>
+            <li>Jauh dari ridha Allah.</li>
+            <li>Kehidupan rusak di dunia dan akhirat.</li>
+        </ol>`,
+
+        `<h2> KESIMPULAN</h2>
+        <p>Empat akhlak tercela ini (ghibah, zhalim, cinta dunia, dan syahwat berlebihan) sangat berbahaya bagi diri dan masyarakat. Karena itu, seorang muslim wajib menjauhinya dan menggantinya dengan akhlak terpuji:</p>
+        <ol>
+            <li>Lawan ghibah → menjaga lisan.</li>
+            <li>Lawan zhalim → adil.</li>
+            <li>Lawan cinta dunia → zuhud.</li>
+            <li>Lawan syahwat berlebihan → mengendalikan diri (iffah).</li>
+        </ol>
         <p style="text-align:center; font-size:1.2rem; font-weight:700; margin-top: 2rem; color:#ffd966; text-shadow: 0 0 6px #ddbb22;">
           Terima kasih telah mempelajari materi Akhlak Tercela!
         </p>`
     ];
 
     let currentPage = 0;
-
     const popup = document.getElementById('popupContent');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -200,7 +210,6 @@
         popup.innerHTML = pages[currentPage];
         prevBtn.disabled = currentPage === 0;
         nextBtn.disabled = currentPage === pages.length - 1;
-        // Scroll popup to top when page changes
         popup.scrollTop = 0;
     }
 
@@ -218,7 +227,6 @@
         }
     }
 
-    // Initialize first page
     updatePage();
 </script>
 
