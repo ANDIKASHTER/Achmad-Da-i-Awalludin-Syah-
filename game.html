@@ -165,12 +165,12 @@
 </head>
 <body>
   <div class="container" role="main" aria-label="Gacha Islami">
-    <h1>Peragakan Akhlak</h1>
+    <h1>Story Of Akhlak</h1>
     <div id="gacha-display" aria-live="polite" aria-atomic="true">?</div>
     <button id="gacha-button" aria-label="Mulai gacha nomor 1 hingga 38">Gacha</button>
     <div id="attribute-display" aria-live="polite" aria-atomic="true"></div>
     <div id="message-display" role="alert"></div>
-    <footer>Semoga Allah memberkahi praktekmu dan perbaikan akhlak</footer>
+    <footer>Buat cerita tentang akhlak yang terkait dalam materi</footer>
   </div>
 
   <script>
@@ -178,17 +178,13 @@
       const maxNumber = 38;
       const attributes = [
         'Ikhlas',
-        'Tawadhu',
-        'Jujur',
-        'Amanah',
-        'Sabar',
+        'sabar',
         'Syukur',
-        'Sombong',
-        'Ujub',
-        'Hasad',
-        'Dengki',
-        'Nafsu',
-        'Syahwat'
+        'Adil',
+        'Ghibah',
+        'Dzalim',
+        'Cinta dunia',
+        'Syahwat berlebihan',
       ];
 
       const gachaDisplay = document.getElementById('gacha-display');
@@ -263,7 +259,7 @@
       }
 
       function showMessage(attribute) {
-        messageDisplay.textContent = `Praktekkan "${attribute}", dan tanyakan kepada temanmu apakah akhlak yang saya praktekkan sesuai.`;
+        messageDisplay.textContent = `CERITAKAN "${attribute}", Kepada Teman-teman sekelasmu.`;
         messageDisplay.style.opacity = 1;
       }
 
