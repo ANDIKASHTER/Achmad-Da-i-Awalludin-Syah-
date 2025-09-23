@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Evaluasi Akhlak-tazkiyatun nafs</title>
+    <title>Evaluasi Akhlak Terpuji & Tercela</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo&family=Montserrat:wght@700&family=Poppins&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
         /* Reset */
         * {
@@ -19,109 +19,291 @@
         body {
             height: 100%;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
         }
 
+        /* Animated background particles */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 120px; height: 120px; left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 60px; height: 60px; left: 70%; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 100px; height: 100px; left: 80%; animation-delay: 1s; }
+        .particle:nth-child(5) { width: 40px; height: 40px; left: 50%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 0.3; }
+        }
+
         /* Container */
         .container {
             max-width: 900px;
             margin: 60px auto 40px;
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2);
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
         }
 
         header h1 {
             font-family: 'Cairo', sans-serif;
-            font-size: 2.5rem;
-            color: #00796b;
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             user-select: none;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 300;
+            margin-top: 5px;
         }
 
         /* Question container */
         .question-container {
             flex-grow: 1;
+            animation: fadeInLeft 0.6s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .question-text {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
             font-weight: 600;
-            color: #004d40;
+            color: #2c3e50;
+            line-height: 1.5;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
         .options {
-            margin-left: 20px;
+            margin-left: 0;
+            display: grid;
+            gap: 15px;
         }
 
         .options label {
-            display: block;
-            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
             cursor: pointer;
             font-size: 1.1rem;
+            line-height: 1.4;
+            padding: 18px 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            position: relative;
+            overflow: hidden;
         }
 
-        textarea {
+        .options label::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            min-height: 140px;
-            font-size: 1.1rem;
-            padding: 10px;
-            border-radius: 8px;
-            border: 2px solid #00796b;
-            resize: vertical;
-            font-family: 'Poppins', sans-serif;
-            margin-top: 8px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .options label:hover {
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+
+        .options label:hover::before {
+            left: 100%;
+        }
+
+        .options input[type="radio"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #667eea;
+            border-radius: 50%;
+            margin-right: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .options input[type="radio"]:checked {
+            background: #667eea;
+            border-color: #667eea;
+            animation: pulse 0.3s ease;
+        }
+
+        .options input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .options label:has(input:checked) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
 
         /* Navigation buttons */
         .nav-buttons {
-            margin-top: 30px;
+            margin-top: 40px;
             display: flex;
             justify-content: space-between;
+            gap: 20px;
         }
 
         button {
-            background-color: #00796b;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #fff;
             border: none;
-            border-radius: 8px;
-            padding: 12px 25px;
+            border-radius: 12px;
+            padding: 15px 30px;
             font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
             user-select: none;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            overflow: hidden;
+            min-width: 120px;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        button:hover::before {
+            left: 100%;
         }
 
         button:disabled {
-            background-color: #b2dfdb;
+            background: linear-gradient(135deg, #cbd5e0 0%, #a0aec0 100%);
             cursor: not-allowed;
+            transform: none;
         }
 
         button:hover:not(:disabled) {
-            background-color: #004d40;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active:not(:disabled) {
+            transform: translateY(-1px);
         }
 
         /* Progress Indicator */
         .progress {
             text-align: center;
             font-weight: 600;
-            margin-bottom: 20px;
-            color: #00796b;
-            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: #667eea;
+            font-size: 1.2rem;
             user-select: none;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            border-radius: 25px;
+            border: 2px solid #e6f3ff;
+            position: relative;
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 0 0 25px 25px;
+            transition: width 0.5s ease;
         }
 
         /* Modal */
@@ -129,115 +311,289 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            animation: fadeIn 0.3s ease;
         }
 
         .modal.active {
             display: flex;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .modal-content {
             background: #fff;
-            padding: 25px 30px;
-            border-radius: 15px;
+            padding: 30px;
+            border-radius: 20px;
             text-align: center;
             max-width: 400px;
-            box-shadow: 0 0 25px #00796baa;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlide 0.4s ease;
+            position: relative;
+        }
+
+        @keyframes modalSlide {
+            from { opacity: 0; transform: scale(0.8) translateY(-50px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-content::before {
+            content: '⚠️';
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
         }
 
         .modal-content p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: #00796b;
-            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: #667eea;
+            font-weight: 600;
             user-select: none;
         }
 
         .modal-content button {
-            background-color: #d32f2f;
-            padding: 10px 25px;
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            padding: 12px 30px;
             color: #fff;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 1.1rem;
-            transition: background-color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
         .modal-content button:hover {
-            background-color: #9a2222;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(229, 62, 62, 0.4);
         }
 
         /* Result */
         .result-container {
             display: none;
             text-align: center;
+            animation: zoomIn 0.6s ease;
         }
 
         .result-container.active {
             display: block;
         }
 
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
         .result-score {
-            font-size: 2.1rem;
-            color: #00796b;
+            font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .result-message {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            color: #4a5568;
         }
 
-        @media (max-width: 600px) {
+        .result-details {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            text-align: left;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .result-details h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .answer-review {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .answer-review::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .correct {
+            background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+            border: 1px solid #68d391;
+        }
+
+        .correct::before {
+            background: #48bb78;
+        }
+
+        .incorrect {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            border: 1px solid #fc8181;
+        }
+
+        .incorrect::before {
+            background: #e53e3e;
+        }
+
+        .answer-review:hover::before {
+            width: 8px;
+        }
+
+        /* Success/Error Icons */
+        .correct::after {
+            content: '✓';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #48bb78;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .incorrect::after {
+            content: '✗';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #e53e3e;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .container {
                 margin: 20px;
-                padding: 20px;
+                padding: 25px;
             }
 
             header h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
-            .question-text,
-            .options label,
-            textarea {
+            .question-text {
+                font-size: 1.2rem;
+                padding: 15px;
+            }
+
+            .options label {
                 font-size: 1rem;
+                padding: 15px;
             }
 
             button {
-                padding: 10px;
+                padding: 12px 20px;
                 font-size: 1rem;
+                min-width: 100px;
             }
 
             .modal-content {
                 max-width: 90vw;
+                margin: 20px;
+                padding: 25px;
             }
+
+            .result-score {
+                font-size: 2.5rem;
+            }
+
+            .nav-buttons {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .particle {
+                display: none;
+            }
+        }
+
+        /* Loading animation for transitions */
+        .fade-transition {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 
 <body>
+    <!-- Animated Background Particles -->
+    <div class="bg-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
     <header>
-        <h1>Evaluasi Tazkiyatun Nafs</h1>
+        <h1>✨ Evaluasi Akhlak Terpuji & Tercela ✨</h1>
+        <p class="subtitle">Uji Pemahaman Anda tentang Akhlak Islam</p>
     </header>
+    
     <main class="container" role="main">
-        <div class="progress" id="progressText">Pertanyaan 1 dari 15</div>
+        <div class="progress" id="progressText">
+            Pertanyaan 1 dari 10
+            <div class="progress-bar" id="progressBar" style="width: 10%"></div>
+        </div>
+        
         <form id="evalForm" autocomplete="off">
-            <div class="question-container" id="questionContainer"></div>
+            <div class="question-container fade-transition" id="questionContainer"></div>
             <div class="nav-buttons">
-                <button type="button" id="prevBtn" disabled>Previous</button>
-                <button type="button" id="nextBtn">Next</button>
+                <button type="button" id="prevBtn" disabled>⬅️ Previous</button>
+                <button type="button" id="nextBtn">Next ➡️</button>
             </div>
         </form>
 
         <div class="result-container" id="resultContainer" aria-live="polite" role="region" tabindex="0">
             <div class="result-score" id="finalScore"></div>
-            <div class="result-message">Terima kasih telah menyelesaikan evaluasi! Jawaban essay akan dikoreksi secara manual dan dikirim ke WhatsApp Anda.</div>
+            <div class="result-message" id="resultMessage">Terima kasih telah menyelesaikan evaluasi!</div>
+            <div class="result-details" id="resultDetails"></div>
+            <button type="button" id="retryBtn" onclick="location.reload()">🔄 Coba Lagi</button>
         </div>
     </main>
 
@@ -245,28 +601,123 @@
     <div class="modal" id="warningModal" role="alertdialog" aria-modal="true" aria-labelledby="modalTitle"
         aria-describedby="modalDesc">
         <div class="modal-content">
-            <p id="modalDesc">Jangan coba coba untuk menyontek!</p>
-            <button id="resetBtn">Mulai Ulang</button>
+            <p id="modalDesc">Jangan coba-coba untuk menyontek!</p>
+            <button id="resetBtn">🔄 Mulai Ulang</button>
         </div>
     </div>
 
     <script>
         const questions = [
-            { type: 'mcq', question: 'Pengertian ikhlas adalah...', options: { A: 'Berbuat baik untuk mendapatkan pujian orang lain', B: 'Beramal hanya karena mengharap ridha Allah semata', C: 'Melakukan sesuatu dengan tujuan mendapat keuntungan duniawi', D: 'Menyombongkan diri atas kebaikan yang dilakukan' }, answer: 'B' },
-            { type: 'mcq', question: 'Sikap tawadhu berarti...', options: { A: 'Merasa diri paling hebat dan paling benar', B: 'Rendah hati dan tidak sombong terhadap orang lain', C: 'Menganggap remeh orang lain', D: 'Memamerkan kelebihan diri' }, answer: 'B' },
-            { type: 'mcq', question: 'Perilaku jujur dalam kehidupan sehari-hari contohnya adalah...', options: { A: 'Membesar-besarkan cerita agar terlihat hebat', B: 'Mengakui kesalahan meski malu', C: 'Berbohong agar terbebas dari hukuman', D: 'Menyembunyikan kebenaran' }, answer: 'B' },
-            { type: 'mcq', question: 'Amanah artinya...', options: { A: 'Menjaga kepercayaan yang diberikan dengan penuh tanggung jawab', B: 'Mengabaikan tugas karena tidak suka', C: 'Melakukan tugas asal-asalan', D: 'Menyerahkan tugas ke orang lain tanpa izin' }, answer: 'A' },
-            { type: 'mcq', question: 'Sabar adalah...', options: { A: 'Menyerah ketika mendapat kesulitan', B: 'Bersikap tenang dan tetap bertahan dalam menghadapi cobaan', C: 'Marah saat tidak sesuai keinginan', D: 'Mengeluh terus menerus saat menghadapi masalah' }, answer: 'B' },
-            { type: 'mcq', question: 'Syukur adalah...', options: { A: 'Merasa cukup dengan nikmat yang ada dan berterima kasih kepada Allah', B: 'Mengeluh karena merasa kurang', C: 'Menganggap semua nikmat berasal dari usaha sendiri', D: 'Membandingkan diri dengan orang lain yang lebih beruntung' }, answer: 'A' },
-            { type: 'mcq', question: 'Sifat sombong adalah...', options: { A: 'Merasa rendah diri di depan orang lain', B: 'Menganggap diri lebih baik dari orang lain dan meremehkan mereka', C: 'Bersikap ramah kepada semua orang', D: 'Menghargai orang lain' }, answer: 'B' },
-            { type: 'mcq', question: 'Ujub adalah...', options: { A: 'Merasa bangga berlebihan kepada diri sendiri dan lupa bahwa semua adalah karunia Allah', B: 'Rendah hati dan tidak ingin dipuji', C: 'Selalu merasa kurang diri', D: 'Tidak peduli dengan pendapat orang lain' }, answer: 'A' },
-            { type: 'mcq', question: 'Hasad berbeda dengan dengki karena...', options: { A: 'Hasad ingin nikmat orang lain hilang, dengki juga ingin orang lain sengsara', B: 'Hasad merasa senang dengan keberhasilan orang lain', C: 'Hasad dan dengki sama saja', D: 'Dengki adalah rasa kagum kepada orang lain' }, answer: 'A' },
-            { type: 'mcq', question: 'Bahaya nafsu dan syahwat yang tidak terkendali dapat menyebabkan...', options: { A: 'Kebahagiaan dan ketenangan jiwa', B: 'Dosa besar dan kerusakan diri', C: 'Menjadi pribadi yang disiplin', D: 'Mendapat pahala berlimpah' }, answer: 'B' },
-            { type: 'essay', question: 'Jelaskan dengan lengkap apa yang dimaksud dengan akhlak ikhlas dan berikan tiga contoh sikap ikhlas dalam kehidupan sehari-hari!', answer: '' },
-            { type: 'essay', question: 'Apa makna tawadhu menurut pandangan Islam? Mengapa sifat tawadhu sangat penting dalam hubungan sosial?', answer: '' },
-            { type: 'essay', question: 'Jelaskan perbedaan antara hasad dan dengki! Berikan contoh nyata dari kehidupan sehari-hari untuk masing-masing!', answer: '' },
-            { type: 'essay', question: 'Mengapa sifat sombong dan ujub sangat dilarang dalam Islam? Jelaskan akibat dari sikap tersebut baik bagi diri sendiri maupun lingkungan sosial!', answer: '' },
-            { type: 'essay', question: 'Jelaskan bahaya nafsu dan syahwat yang tidak terkendali menurut pandangan Islam! Bagaimana cara seorang muslim mengendalikan nafsu dan syahwatnya agar tidak merusak akhlak?', answer: '' },
+            {
+                type: 'mcq',
+                question: 'Berikut ini yang termasuk contoh perbuatan ikhlas adalah …',
+                options: {
+                    A: 'Bersedekah supaya dipuji orang',
+                    B: 'Shalat karena ingin dilihat teman',
+                    C: 'Belajar untuk mencari ridha Allah',
+                    D: 'Memberi hadiah agar dibalas'
+                },
+                answer: 'C'
+            },
+            {
+                type: 'mcq',
+                question: 'Seseorang yang mampu menahan diri ketika dihina orang lain berarti ia memiliki akhlak …',
+                options: {
+                    A: 'Sabar',
+                    B: 'Syukur',
+                    C: 'Iffah',
+                    D: 'Zuhud'
+                },
+                answer: 'A'
+            },
+            {
+                type: 'mcq',
+                question: 'Mengucapkan Alhamdulillah ketika mendapat rezeki adalah contoh akhlak …',
+                options: {
+                    A: 'Sabar',
+                    B: 'Syukur',
+                    C: 'Adil',
+                    D: 'Ikhlas'
+                },
+                answer: 'B'
+            },
+            {
+                type: 'mcq',
+                question: 'Seorang pemimpin yang tidak membeda-bedakan rakyatnya dan memberikan hak secara adil, berarti ia mengamalkan akhlak …',
+                options: {
+                    A: 'Zuhud',
+                    B: 'Adil',
+                    C: 'Ikhlas',
+                    D: 'Iffah'
+                },
+                answer: 'B'
+            },
+            {
+                type: 'mcq',
+                question: 'Membicarakan keburukan orang lain di belakangnya disebut …',
+                options: {
+                    A: 'Namimah',
+                    B: 'Ghibah',
+                    C: 'Zhalim',
+                    D: 'Ujub'
+                },
+                answer: 'B'
+            },
+            {
+                type: 'mcq',
+                question: 'Orang yang mengambil hak orang lain dengan cara paksa termasuk akhlak tercela yaitu …',
+                options: {
+                    A: 'Riya',
+                    B: 'Hasad',
+                    C: 'Zhalim',
+                    D: 'Bakhil'
+                },
+                answer: 'C'
+            },
+            {
+                type: 'mcq',
+                question: 'Rasulullah bersabda: "Cinta dunia adalah pangkal segala kesalahan (dosa)." Hadis ini menunjukkan bahwa cinta dunia adalah …',
+                options: {
+                    A: 'Akhlak terpuji',
+                    B: 'Akhlak tercela',
+                    C: 'Iffah',
+                    D: 'Zuhud'
+                },
+                answer: 'B'
+            },
+            {
+                type: 'mcq',
+                question: 'Menjaga diri dari perbuatan keji dan mampu mengendalikan hawa nafsu disebut akhlak …',
+                options: {
+                    A: 'Ikhlas',
+                    B: 'Zuhud',
+                    C: 'Iffah',
+                    D: 'Adil'
+                },
+                answer: 'C'
+            },
+            {
+                type: 'mcq',
+                question: 'Lawan dari sifat ghibah adalah …',
+                options: {
+                    A: 'Zuhud',
+                    B: 'Menjaga lisan',
+                    C: 'Sabar',
+                    D: 'Adil'
+                },
+                answer: 'B'
+            },
+            {
+                type: 'mcq',
+                question: 'Orang yang hidup sederhana, tidak berlebihan mencintai dunia, dan lebih mengutamakan akhirat berarti ia memiliki akhlak …',
+                options: {
+                    A: 'Zuhud',
+                    B: 'Adil',
+                    C: 'Ikhlas',
+                    D: 'Iffah'
+                },
+                answer: 'A'
+            }
         ];
 
         let currentQuestionIndex = 0;
@@ -276,24 +727,36 @@
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const progressText = document.getElementById('progressText');
+        const progressBar = document.getElementById('progressBar');
         const evalForm = document.getElementById('evalForm');
         const resultContainer = document.getElementById('resultContainer');
         const finalScore = document.getElementById('finalScore');
+        const resultMessage = document.getElementById('resultMessage');
+        const resultDetails = document.getElementById('resultDetails');
         const modal = document.getElementById('warningModal');
         const resetBtn = document.getElementById('resetBtn');
 
         // Flag to show modal only once per cheating event batch
         let modalShown = false;
 
+        function updateProgress() {
+            const progress = ((currentQuestionIndex + 1) / totalQuestions) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
         function showQuestion(index) {
-            progressText.textContent = `Pertanyaan ${index + 1} dari ${totalQuestions}`;
+            progressText.innerHTML = `Pertanyaan ${index + 1} dari ${totalQuestions} <div class="progress-bar" id="progressBar" style="width: ${((index + 1) / totalQuestions) * 100}%"></div>`;
+            
             const q = questions[index];
             questionContainer.innerHTML = '';
-
-            if (q.type === 'mcq') {
+            questionContainer.classList.remove('fade-transition');
+            
+            setTimeout(() => {
+                questionContainer.classList.add('fade-transition');
+                
                 const questionText = document.createElement('p');
                 questionText.className = 'question-text';
-                questionText.textContent = `${index + 1}. ${q.question}`;
+                questionText.innerHTML = `<strong>${index + 1}.</strong> ${q.question}`;
                 questionContainer.appendChild(questionText);
 
                 const optionsDiv = document.createElement('div');
@@ -313,6 +776,11 @@
 
                     input.addEventListener('change', () => {
                         q.userAnswer = input.value;
+                        // Add selection animation
+                        label.style.animation = 'pulse 0.3s ease';
+                        setTimeout(() => {
+                            label.style.animation = '';
+                        }, 300);
                     });
 
                     label.appendChild(input);
@@ -320,25 +788,12 @@
                     optionsDiv.appendChild(label);
                 }
                 questionContainer.appendChild(optionsDiv);
-            } else if (q.type === 'essay') {
-                const questionText = document.createElement('p');
-                questionText.className = 'question-text';
-                questionText.textContent = `${index + 1}. ${q.question}`;
-                questionContainer.appendChild(questionText);
-
-                const textarea = document.createElement('textarea');
-                textarea.name = 'essayAnswer';
-                textarea.required = true;
-                textarea.value = q.userAnswer || '';
-                textarea.placeholder = 'Tulis jawaban anda di sini...';
-                textarea.addEventListener('input', (e) => {
-                    q.userAnswer = e.target.value;
-                });
-                questionContainer.appendChild(textarea);
-            }
+            }, 100);
 
             prevBtn.disabled = index === 0;
-            nextBtn.textContent = index === totalQuestions - 1 ? 'Kirim' : 'Next';
+            nextBtn.innerHTML = index === totalQuestions - 1 ? '🏁 Selesai' : 'Next ➡️';
+            
+            updateProgress();
         }
 
         prevBtn.addEventListener('click', () => {
@@ -354,21 +809,33 @@
             }
 
             const q = questions[currentQuestionIndex];
-            if (q.type === 'mcq') {
-                const selected = document.querySelector('input[name="option"]:checked');
-                if (!selected) {
-                    alert('Silakan pilih salah satu jawaban sebelum melanjutkan.');
-                    return;
-                }
-                q.userAnswer = selected.value;
-            } else {
-                const textarea = questionContainer.querySelector('textarea');
-                if (!textarea.value.trim()) {
-                    alert('Silakan isi jawaban essay sebelum melanjutkan.');
-                    return;
-                }
-                q.userAnswer = textarea.value.trim();
+            const selected = document.querySelector('input[name="option"]:checked');
+            if (!selected) {
+                // Enhanced alert with animation
+                const alertDiv = document.createElement('div');
+                alertDiv.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 10px;
+                    font-weight: 600;
+                    z-index: 1001;
+                    animation: slideInRight 0.3s ease;
+                    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+                `;
+                alertDiv.textContent = '⚠️ Silakan pilih salah satu jawaban!';
+                document.body.appendChild(alertDiv);
+                
+                setTimeout(() => {
+                    alertDiv.style.animation = 'slideOutRight 0.3s ease';
+                    setTimeout(() => document.body.removeChild(alertDiv), 300);
+                }, 2000);
+                return;
             }
+            q.userAnswer = selected.value;
 
             if (currentQuestionIndex === totalQuestions - 1) {
                 submitQuiz();
@@ -379,35 +846,66 @@
         });
 
         function submitQuiz() {
-            // Calculate score for MCQs only
+            // Calculate score
             let score = 0;
+            let correctAnswers = 0;
+            
             questions.forEach(q => {
-                if (q.type === 'mcq' && q.userAnswer === q.answer) {
+                if (q.userAnswer === q.answer) {
                     score += 10;
+                    correctAnswers++;
                 }
             });
 
-            evalForm.style.display = 'none';
-            progressText.style.display = 'none';
-            resultContainer.classList.add('active');
-            finalScore.textContent = `Skor Anda: ${score} dari 100`;
+            // Hide form and show results with animation
+            evalForm.style.animation = 'fadeOut 0.5s ease';
+            progressText.style.animation = 'fadeOut 0.5s ease';
+            
+            setTimeout(() => {
+                evalForm.style.display = 'none';
+                progressText.style.display = 'none';
+                resultContainer.classList.add('active');
+                
+                // Display score with animation
+                finalScore.textContent = `🎉 Skor Anda: ${score} dari 100 🎉`;
+                
+                // Display performance message
+                let performanceMessage = '';
+                let emoji = '';
+                if (score >= 80) {
+                    performanceMessage = 'Luar biasa! Anda memiliki pemahaman yang sangat baik tentang akhlak Islam.';
+                    emoji = '🌟';
+                } else if (score >= 60) {
+                    performanceMessage = 'Bagus! Anda memiliki pemahaman yang baik, tetapi masih bisa ditingkatkan.';
+                    emoji = '👍';
+                } else if (score >= 40) {
+                    performanceMessage = 'Cukup baik. Anda perlu mempelajari lebih lanjut tentang akhlak Islam.';
+                    emoji = '📚';
+                } else {
+                    performanceMessage = 'Perlu peningkatan. Disarankan untuk mempelajari kembali materi akhlak Islam.';
+                    emoji = '💪';
+                }
+                
+                resultMessage.innerHTML = `${emoji} ${performanceMessage}<br><strong>Anda menjawab ${correctAnswers} dari ${totalQuestions} pertanyaan dengan benar.</strong>`;
 
-            // Prepare WhatsApp message content, encodeURIComponent applied
-            let message = encodeURIComponent(
-`Evaluasi Sholat - Hasil Peserta:
-
-Skor Pilihan Ganda: ${score}
-
-Jawaban Essay:
-${questions.filter(q => q.type === 'essay').map((q, i) =>
-`${i + 1}. ${q.question}
-Jawaban: ${q.userAnswer || '(Tidak diisi)'}`
-).join('\n\n')}
-`);
-
-            const waNumber = '6289519788638'; // WhatsApp number in Indonesia format
-            const waUrl = `https://wa.me/${waNumber}?text=${message}`;
-            window.open(waUrl, '_blank');
+                // Show detailed results with enhanced styling
+                let detailsHTML = '<h3>📋 Review Jawaban Anda</h3>';
+                questions.forEach((q, index) => {
+                    const isCorrect = q.userAnswer === q.answer;
+                    const className = isCorrect ? 'correct' : 'incorrect';
+                    const status = isCorrect ? '✅ Benar' : '❌ Salah';
+                    const correctAnswerText = isCorrect ? '' : ` <br><small><strong>Jawaban yang benar: ${q.answer}</strong></small>`;
+                    
+                    detailsHTML += `
+                        <div class="answer-review ${className}">
+                            <strong>Soal ${index + 1}:</strong> ${status}<br>
+                            <small>Jawaban Anda: <strong>${q.userAnswer || 'Tidak dijawab'}</strong>${correctAnswerText}</small>
+                        </div>
+                    `;
+                });
+                
+                resultDetails.innerHTML = detailsHTML;
+            }, 500);
         }
 
         function showModal() {
@@ -424,38 +922,71 @@ Jawaban: ${q.userAnswer || '(Tidak diisi)'}`
 
         resetBtn.addEventListener('click', () => {
             hideModal();
-            questions.forEach(q => q.userAnswer = '');
+            questions.forEach(q => delete q.userAnswer);
             currentQuestionIndex = 0;
             showQuestion(currentQuestionIndex);
             evalForm.style.display = 'flex';
+            evalForm.style.animation = '';
             progressText.style.display = 'block';
+            progressText.style.animation = '';
             resultContainer.classList.remove('active');
         });
 
-        // Show modal on blur only once until reset
+        // Enhanced anti-cheating measures
+        let blurCount = 0;
         window.addEventListener('blur', () => {
-            showModal();
-        });
-
-        // Show modal on minimize (small window) only once until reset
-        window.addEventListener('resize', () => {
-            if ((window.innerWidth < 300 || window.innerHeight < 300) && !modal.classList.contains('active')) {
-                alert('Mau ngapain?');
+            blurCount++;
+            if (blurCount <= 2) { // Allow 2 blur events before showing modal
                 showModal();
             }
         });
 
-        // Prevent modal close on outside click or ESC key
-        modal.addEventListener('click', e => {
-            e.stopPropagation();
+        // Prevent right-click context menu
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            showModal();
         });
-        window.addEventListener('keydown', e => {
-            if (modal.classList.contains('active')) {
-                if (e.key === "Escape" || e.key === "Esc") {
-                    e.preventDefault();
-                }
+
+        // Prevent common keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Prevent F12, Ctrl+Shift+I, Ctrl+U, Ctrl+Shift+C
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) ||
+                (e.ctrlKey && e.key === 'u')) {
+                e.preventDefault();
+                showModal();
+            }
+            
+            // Prevent modal close on ESC key
+            if (modal.classList.contains('active') && e.key === 'Escape') {
+                e.preventDefault();
             }
         });
+
+        // Prevent modal close on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                e.stopPropagation();
+            }
+        });
+
+        // Add CSS animations dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
 
         // Initialize first question
         showQuestion(currentQuestionIndex);
