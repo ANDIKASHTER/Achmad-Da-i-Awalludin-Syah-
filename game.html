@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gacha Islami</title>
+  <title>Story Of Akhlak - Gacha Islami</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&family=Lateef&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=Lateef:wght@400;700&display=swap');
 
-    /* Islamic geometric background pattern */
+    /* Enhanced Islamic geometric background pattern */
     body {
       margin: 0;
       min-height: 100vh;
@@ -16,57 +16,120 @@
       align-items: center;
       background:
         radial-gradient(circle at center, #d5e8d4 1px, transparent 1px),
-        radial-gradient(circle at center, #d5e8d4 1px, transparent 1px);
-      background-position: 0 0, 25px 25px;
-      background-size: 50px 50px;
+        radial-gradient(circle at center, #d5e8d4 1px, transparent 1px),
+        linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
+      background-position: 0 0, 25px 25px, 0 0;
+      background-size: 50px 50px, 50px 50px, 100% 100%;
       font-family: 'Reem Kufi', 'Lateef', cursive, sans-serif;
       color: #234d20;
       user-select: none;
       padding: 20px;
+      overflow-x: hidden;
     }
 
     .container {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.98);
       border: 3px solid #2a6f35;
-      border-radius: 20px;
-      width: 380px;
+      border-radius: 25px;
+      width: 420px;
       max-width: 90vw;
       box-shadow:
-        0 0 15px rgba(42, 111, 53, 0.4),
-        inset 0 0 20px rgba(170, 200, 170, 0.7);
-      padding: 30px 25px 40px;
+        0 0 30px rgba(42, 111, 53, 0.3),
+        inset 0 0 30px rgba(170, 200, 170, 0.5);
+      padding: 35px 30px 45px;
       text-align: center;
+      position: relative;
+      backdrop-filter: blur(10px);
     }
 
     h1 {
       margin-top: 0;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
       font-weight: 700;
       color: #1e4d1e;
-      font-size: 2.2rem;
-      text-shadow: 0 1px 1px #a1c292;
+      font-size: 2.4rem;
+      text-shadow: 0 2px 4px rgba(161, 194, 146, 0.8);
       letter-spacing: 2px;
+      background: linear-gradient(135deg, #1e4d1e, #2a6f35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    #gacha-display {
-      margin: 25px auto 30px;
-      width: 150px;
-      height: 150px;
-      line-height: 150px;
-      font-size: 5rem;
+    .gacha-section {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 30px 0;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .gacha-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .gacha-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2a6f35;
+      margin-bottom: 5px;
+      text-shadow: 0 1px 2px rgba(42, 111, 53, 0.3);
+    }
+
+    #number-display, #attribute-display {
+      width: 120px;
+      height: 120px;
       font-weight: 900;
-      border: 8px solid #2a6f35;
+      border: 6px solid #2a6f35;
       border-radius: 50%;
       color: #2a6f35;
       background: radial-gradient(circle at center, #ebf4e6, #c5ddad);
       box-shadow:
-        0 0 25px 4px #85b778aa,
-        inset 0 0 35px 11px #d1e8be;
+        0 0 20px 3px rgba(133, 183, 120, 0.6),
+        inset 0 0 25px 8px #d1e8be;
       user-select: none;
-      transition: all 0.4s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       text-shadow:
         2px 2px 4px #a4d37b,
-        0 0 5px #8bc34aaa;
+        0 0 5px rgba(139, 195, 74, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #number-display {
+      font-size: 3.5rem;
+      line-height: 1;
+    }
+
+    #attribute-display {
+      font-size: 1.4rem;
+      line-height: 1.1;
+      padding: 8px;
+      text-align: center;
+      word-wrap: break-word;
+      hyphens: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-overflow: ellipsis;
+    }
+
+    /* Dynamic font sizing for attribute display */
+    #attribute-display.long-text {
+      font-size: 1.1rem;
+      line-height: 1.0;
+    }
+
+    #attribute-display.very-long-text {
+      font-size: 0.9rem;
+      line-height: 0.95;
     }
 
     button#gacha-button {
@@ -74,213 +137,387 @@
       border: none;
       border-radius: 50px;
       color: white;
-      padding: 14px 38px;
-      font-size: 1.25rem;
+      padding: 16px 45px;
+      font-size: 1.3rem;
       font-weight: 700;
-      letter-spacing: 1.3px;
+      letter-spacing: 1.5px;
       cursor: pointer;
       box-shadow:
-        0 7px 10px #59813288,
+        0 8px 15px rgba(89, 129, 50, 0.4),
         inset 0 -3px 8px #2e5b16;
-      transition: background-color 0.35s ease, transform 0.15s ease;
-    }
-    button#gacha-button:hover:not(:disabled) {
-      background: linear-gradient(135deg, #89b96e, #4a7c2d);
-      transform: scale(1.08);
-    }
-    button#gacha-button:disabled {
-      background: #9dc28a8c;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 25px 0;
+      position: relative;
+      overflow: hidden;
     }
 
-    #attribute-display {
-      margin-top: 40px;
-      font-size: 1.6rem;
-      min-height: 72px;
-      font-weight: 700;
-      color: #356426;
-      letter-spacing: 1.1px;
-      padding: 0 12px;
-      text-shadow: 1px 1px 2px #b9deb0;
-      transition: opacity 0.4s ease;
-      user-select: none;
-      min-height: 70px;
+    button#gacha-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    button#gacha-button:hover:not(:disabled) {
+      background: linear-gradient(135deg, #89b96e, #4a7c2d);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow:
+        0 12px 25px rgba(89, 129, 50, 0.5),
+        inset 0 -3px 8px #2e5b16;
+    }
+
+    button#gacha-button:hover:not(:disabled)::before {
+      left: 100%;
+    }
+
+    button#gacha-button:disabled {
+      background: rgba(157, 194, 138, 0.6);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: 0 2px 5px rgba(89, 129, 50, 0.2);
     }
 
     #message-display {
-      margin-top: 25px;
-      font-size: 1.2rem;
+      margin-top: 30px;
+      font-size: 1.25rem;
       font-weight: 600;
       color: #4b7026;
-      letter-spacing: 0.6px;
-      line-height: 1.4em;
+      letter-spacing: 0.8px;
+      line-height: 1.5em;
       user-select: none;
       opacity: 0;
-      transition: opacity 0.7s ease;
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateY(20px);
+      padding: 20px;
+      background: rgba(235, 244, 230, 0.8);
+      border-radius: 15px;
+      border: 2px solid rgba(42, 111, 53, 0.2);
+    }
+
+    #message-display.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     footer {
-      margin-top: 48px;
-      font-size: 0.8rem;
-      color: #55843fcc;
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: rgba(85, 132, 63, 0.8);
       text-align: center;
       font-style: italic;
       user-select: none;
     }
 
-    /* Animations */
-    @keyframes rotateGlow {
-      0% { box-shadow: 0 0 20px #67a03d, inset 0 0 30px #9ddd5a; }
-      50% { box-shadow: 0 0 40px #7dcc51, inset 0 0 50px #aef470; }
-      100% { box-shadow: 0 0 20px #67a03d, inset 0 0 30px #9ddd5a; }
+    /* Enhanced Animations */
+    @keyframes numberSpin {
+      0% { 
+        transform: rotateY(0deg) scale(1);
+        box-shadow: 0 0 20px rgba(103, 160, 61, 0.6), inset 0 0 25px #9ddd5a;
+      }
+      25% { 
+        transform: rotateY(90deg) scale(1.1);
+        box-shadow: 0 0 35px rgba(125, 204, 81, 0.8), inset 0 0 40px #aef470;
+      }
+      50% { 
+        transform: rotateY(180deg) scale(1.2);
+        box-shadow: 0 0 50px rgba(187, 255, 106, 1), inset 0 0 60px #d2ff81;
+      }
+      75% { 
+        transform: rotateY(270deg) scale(1.1);
+        box-shadow: 0 0 35px rgba(125, 204, 81, 0.8), inset 0 0 40px #aef470;
+      }
+      100% { 
+        transform: rotateY(360deg) scale(1);
+        box-shadow: 0 0 20px rgba(103, 160, 61, 0.6), inset 0 0 25px #9ddd5a;
+      }
     }
 
-    #gacha-display.animating {
-      animation: rotateGlow 2s infinite ease-in-out;
-      color: #ffffffcc;
-      text-shadow:
-        0 0 8px #bbff6a,
-        0 0 14px #d2ff81;
-      background: linear-gradient(45deg, #589134, #a5f158);
-      border-color: #c6ff7b;
-      box-shadow:
-        0 0 35px 6px #bbff6a,
-        inset 0 0 40px 18px #d2ff81;
+    @keyframes attributeSlide {
+      0% { 
+        transform: translateX(-100%) rotateX(0deg);
+        opacity: 0;
+      }
+      50% { 
+        transform: translateX(0%) rotateX(180deg);
+        opacity: 1;
+      }
+      100% { 
+        transform: translateX(100%) rotateX(360deg);
+        opacity: 0;
+      }
     }
 
-    /* Attribute cycling animation */
-    #attribute-display.animating {
-      animation: pulseGlow 1.3s infinite alternate;
-      color: #3a6c19cc;
-      text-shadow: 0 0 6px #a8df7a;
+    @keyframes finalReveal {
+      0% { 
+        transform: scale(0.8) rotateZ(-10deg);
+        opacity: 0;
+      }
+      50% { 
+        transform: scale(1.2) rotateZ(5deg);
+        opacity: 0.8;
+      }
+      100% { 
+        transform: scale(1) rotateZ(0deg);
+        opacity: 1;
+      }
     }
 
     @keyframes pulseGlow {
-      0% { text-shadow: 0 0 6px #9acd32; }
-      100% { text-shadow: 0 0 18px #e0f48c; }
+      0% { 
+        box-shadow: 0 0 20px rgba(103, 160, 61, 0.6), inset 0 0 25px #9ddd5a;
+        text-shadow: 0 0 8px #9acd32;
+      }
+      50% { 
+        box-shadow: 0 0 40px rgba(187, 255, 106, 0.9), inset 0 0 50px #d2ff81;
+        text-shadow: 0 0 20px #e0f48c;
+      }
+      100% { 
+        box-shadow: 0 0 20px rgba(103, 160, 61, 0.6), inset 0 0 25px #9ddd5a;
+        text-shadow: 0 0 8px #9acd32;
+      }
+    }
+
+    #number-display.spinning {
+      animation: numberSpin 0.3s infinite linear;
+      color: rgba(255, 255, 255, 0.9);
+      background: linear-gradient(45deg, #589134, #a5f158);
+      border-color: #c6ff7b;
+    }
+
+    #attribute-display.sliding {
+      animation: attributeSlide 0.4s infinite ease-in-out;
+      color: rgba(255, 255, 255, 0.9);
+      background: linear-gradient(135deg, #6a9c3d, #b8f76a);
+      border-color: #d4ff8a;
+      box-shadow: 0 0 30px rgba(180, 247, 106, 0.8), inset 0 0 40px #e8ffb3;
+    }
+
+    #number-display.final, #attribute-display.final {
+      animation: finalReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    #number-display.pulsing, #attribute-display.pulsing {
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+
+    /* Responsive design */
+    @media (max-width: 480px) {
+      .gacha-section {
+        flex-direction: column;
+        gap: 25px;
+      }
+      
+      #number-display, #attribute-display {
+        width: 140px;
+        height: 140px;
+      }
+      
+      #attribute-display {
+        font-size: 1.3rem;
+      }
+      
+      #attribute-display.long-text {
+        font-size: 1.0rem;
+      }
+
+      #attribute-display.very-long-text {
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container" role="main" aria-label="Gacha Islami">
     <h1>Story Of Akhlak</h1>
-    <div id="gacha-display" aria-live="polite" aria-atomic="true">?</div>
-    <button id="gacha-button" aria-label="Mulai gacha nomor 1 hingga 38">Gacha</button>
-    <div id="attribute-display" aria-live="polite" aria-atomic="true"></div>
+    
+    <div class="gacha-section">
+      <div class="gacha-item">
+        <div class="gacha-label">Nomor</div>
+        <div id="number-display" aria-live="polite" aria-atomic="true">?</div>
+      </div>
+      
+      <div class="gacha-item">
+        <div class="gacha-label">Akhlak</div>
+        <div id="attribute-display" aria-live="polite" aria-atomic="true">?</div>
+      </div>
+    </div>
+    
+    <button id="gacha-button" aria-label="Mulai gacha nomor 1 hingga 38 dan akhlak">Gacha Sekarang!</button>
+    
     <div id="message-display" role="alert"></div>
-    <footer>Buat cerita tentang akhlak yang terkait dalam materi</footer>
+    
+    <footer>Buat cerita tentang akhlak yang terkait dalam materi dan berikan pesan inspiratif</footer>
   </div>
 
   <script>
     (() => {
       const maxNumber = 38;
       const attributes = [
-        'Ikhlas',
-        'sabar',
-        'Syukur',
-        'Adil',
-        'Ghibah',
-        'Dzalim',
-        'Cinta dunia',
-        'Syahwat berlebihan',
+        'Ikhlas', 'Sabar', 'Syukur', 'Adil', 'Jujur', 'Amanah',
+        'Rendah Hati', 'Pemaaf', 'Dermawan', 'Kasih Sayang',
+        'Ghibah', 'Dzalim', 'Cinta Dunia', 'Syahwat Berlebihan',
+        'Sombong', 'Dengki', 'Bakhil', 'Pemarah'
       ];
 
-      const gachaDisplay = document.getElementById('gacha-display');
+      const numberDisplay = document.getElementById('number-display');
       const attrDisplay = document.getElementById('attribute-display');
       const messageDisplay = document.getElementById('message-display');
       const gachaButton = document.getElementById('gacha-button');
 
-      let animationTimeouts = [1];
+      let animationTimeouts = [];
       let selectedNumber = null;
       let selectedAttribute = null;
+
+      function adjustFontSize(element, text) {
+        // Remove existing size classes
+        element.classList.remove('long-text', 'very-long-text');
+        
+        // Add appropriate class based on text length
+        if (text.length > 15) {
+          element.classList.add('very-long-text');
+        } else if (text.length > 10) {
+          element.classList.add('long-text');
+        }
+      }
 
       function clearAnimations() {
         animationTimeouts.forEach(t => clearTimeout(t));
         animationTimeouts = [];
-        gachaDisplay.classList.remove('animating');
-        attrDisplay.classList.remove('animating');
-        attrDisplay.textContent = '';
-        messageDisplay.style.opacity = 0;
-        messageDisplay.textContent = '';
+        numberDisplay.className = '';
+        attrDisplay.className = '';
+        messageDisplay.classList.remove('show');
       }
 
-      function animateNumbers(callback) {
-        gachaDisplay.classList.add('animating');
-        let count = 3.6;
-        const totalCycles = 31; // reduced from 60 to speed up animation
+      function animateNumbers() {
+        return new Promise((resolve) => {
+          numberDisplay.classList.add('spinning');
+          let cycles = 0;
+          const maxCycles = 25;
+          let interval = 80;
 
-        function cycle() {
-          let intervalDuration = 31 + (count * 6.7); // reduced from 50 + (count * 15) to speed up
-          count++;
-          const randomNum = Math.floor(Math.random() * maxNumber) + 1;
-          gachaDisplay.textContent = randomNum;
+          function cycle() {
+            const randomNum = Math.floor(Math.random() * maxNumber) + 1;
+            numberDisplay.textContent = randomNum;
+            cycles++;
 
-          if (count < totalCycles) {
-            animationTimeouts.push(setTimeout(cycle, intervalDuration));
-          } else {
-            gachaDisplay.classList.remove('animating');
-            selectedNumber = randomNum;
-            callback(selectedNumber);
-          }
-        }
-        cycle();
-      }
-
-      function animateAttributes(callback) {
-        attrDisplay.classList.add('animating');
-        let cycles = 0;
-        const maxCycles = 23; // reduced from 40 to speed up animation
-        let currentIndex = 1;
-        let interval = 56; // reduced from 100
-
-        function cycle() {
-          attrDisplay.textContent = attributes[currentIndex];
-          currentIndex = (currentIndex + 1) % attributes.length;
-
-          cycles++;
-          if (cycles < maxCycles) {
-            animationTimeouts.push(setTimeout(cycle, interval));
-            // slow down cycle towards end
-            if (cycles > maxCycles * 0.9) {
-              interval += 5; // reduced from 10 to slow down less
+            if (cycles < maxCycles) {
+              // Gradually slow down
+              if (cycles > maxCycles * 0.7) {
+                interval += 15;
+              }
+              animationTimeouts.push(setTimeout(cycle, interval));
+            } else {
+              numberDisplay.classList.remove('spinning');
+              numberDisplay.classList.add('final');
+              selectedNumber = randomNum;
+              
+              animationTimeouts.push(setTimeout(() => {
+                numberDisplay.classList.remove('final');
+                numberDisplay.classList.add('pulsing');
+                resolve(selectedNumber);
+              }, 800));
             }
-          } else {
-            attrDisplay.classList.remove('animating');
-      // pilih random, bukan hanya index terakhir
-      selectedAttribute = attributes[Math.floor(Math.random() * attributes.length)];
-      attrDisplay.textContent = selectedAttribute;
-      callback(selectedAttribute);
-    }
+          }
+          cycle();
+        });
+      }
 
+      function animateAttributes() {
+        return new Promise((resolve) => {
+          attrDisplay.classList.add('sliding');
+          let cycles = 0;
+          const maxCycles = 20;
+          let currentIndex = 0;
+          let interval = 120;
+
+          function cycle() {
+            const currentAttr = attributes[currentIndex];
+            attrDisplay.textContent = currentAttr;
+            adjustFontSize(attrDisplay, currentAttr);
+            currentIndex = (currentIndex + 1) % attributes.length;
+            cycles++;
+
+            if (cycles < maxCycles) {
+              // Gradually slow down
+              if (cycles > maxCycles * 0.6) {
+                interval += 25;
+              }
+              animationTimeouts.push(setTimeout(cycle, interval));
+            } else {
+              attrDisplay.classList.remove('sliding');
+              
+              // Select final random attribute
+              selectedAttribute = attributes[Math.floor(Math.random() * attributes.length)];
+              attrDisplay.textContent = selectedAttribute;
+              adjustFontSize(attrDisplay, selectedAttribute);
+              attrDisplay.classList.add('final');
+              
+              animationTimeouts.push(setTimeout(() => {
+                attrDisplay.classList.remove('final');
+                attrDisplay.classList.add('pulsing');
+                resolve(selectedAttribute);
+              }, 800));
+            }
+          }
+          cycle();
+        });
+      }
+
+      function showMessage(number, attribute) {
+        const isPositiveAttribute = !['Ghibah', 'Dzalim', 'Cinta Dunia', 'Syahwat Berlebihan', 'Sombong', 'Dengki', 'Bakhil', 'Pemarah'].includes(attribute);
+        
+        let message;
+        if (isPositiveAttribute) {
+          message = `🌟 Nomor ${number} - Akhlak "${attribute}" 🌟\n\nCeritakan kepada teman-temanmu tentang kebaikan akhlak "${attribute}" dan bagaimana kita bisa menerapkannya dalam kehidupan sehari-hari. Berikan contoh nyata dan pesan inspiratif!`;
+        } else {
+          message = `⚠️ Nomor ${number} - Akhlak "${attribute}" ⚠️\n\nCeritakan kepada teman-temanmu tentang bahaya akhlak "${attribute}" dan bagaimana kita harus menghindarinya. Berikan nasihat dan cara-cara untuk memperbaiki diri!`;
         }
-        cycle();
+        
+        messageDisplay.textContent = message;
+        messageDisplay.classList.add('show');
       }
 
-      function showMessage(attribute) {
-        messageDisplay.textContent = `Ceritakan tentang Akhlak "${attribute}", Kepada Teman-teman sekelasmu dan berikan pesan untuk mereka.`;
-        messageDisplay.style.opacity = 1;
-      }
-
-      gachaButton.addEventListener('click', () => {
+      async function startGacha() {
         gachaButton.disabled = true;
         clearAnimations();
-        gachaDisplay.textContent = '?';
-        attrDisplay.textContent = '';
-        messageDisplay.style.opacity = 0;
-        messageDisplay.textContent = '';
+        
+        // Reset displays
+        numberDisplay.textContent = '?';
+        attrDisplay.textContent = '?';
+        attrDisplay.classList.remove('long-text', 'very-long-text');
+        messageDisplay.classList.remove('show');
 
-        animateNumbers(selectedNum => {
-          // After number is chosen, animate attributes
-          animateAttributes(selectedAttr => {
-            showMessage(selectedAttr);
+        try {
+          // Run both animations simultaneously
+          const [finalNumber, finalAttribute] = await Promise.all([
+            animateNumbers(),
+            animateAttributes()
+          ]);
+
+          // Show final message after both animations complete
+          animationTimeouts.push(setTimeout(() => {
+            showMessage(finalNumber, finalAttribute);
             gachaButton.disabled = false;
-          });
-        });
-      });
+          }, 500));
+
+        } catch (error) {
+          console.error('Animation error:', error);
+          gachaButton.disabled = false;
+        }
+      }
+
+      gachaButton.addEventListener('click', startGacha);
+
+      // Add some initial sparkle effect
+      animationTimeouts.push(setTimeout(() => {
+        numberDisplay.classList.add('pulsing');
+        attrDisplay.classList.add('pulsing');
+      }, 1000));
     })();
   </script>
 </body>
 </html>
-
