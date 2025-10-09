@@ -356,6 +356,7 @@
   <script>
     (() => {
       const maxNumber = 38;
+      const blockedNumbers = [8, 33, 32]; // Nomor yang tidak boleh muncul
       const attributes = [
         'Ikhlas', 'Sabar', 'Syukur', 'Adil', 'Jujur', 'Amanah',
         'Rendah Hati', 'Pemaaf', 'Dermawan', 'Kasih Sayang',
@@ -400,7 +401,8 @@
           let interval = 80;
 
           function cycle() {
-            const randomNum = Math.floor(Math.random() * maxNumber) + 1;
+            let randomNum; do { randomNum = Math.floor(Math.random() * maxNumber) + 1; } while (blockedNumbers.includes(randomNum)); // ulangi kalau nomor diblokir
+
             numberDisplay.textContent = randomNum;
             cycles++;
 
